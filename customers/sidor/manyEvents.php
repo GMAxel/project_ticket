@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Startsida Customers</title>
+    <title>Alla events Customers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/header/header.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/nav/nav.css">
@@ -32,13 +32,24 @@
         require_once '../include/layout/search/search.php';
         require_once '../include/layout/logo/logo.php';
 
-        require_once '../include/classes/customer.php';
+
 
         ?>
-
         <main class="gridItem">  
-            <!-- Event med flest köpa biljetter -->
-            <h1>Populära Event</h1>
+            <h1>Biljettsida</h1>
+
+            Eventtyp
+            <select name="eventType"> 
+                <option value="all">-</option>
+                <option value="Fotboll">Fotboll</option>
+                <option value="Konsert">Konsert</option>    
+            </select>
+            Region
+            <select name="region"> 
+                <option value="all">-</option>
+                <option value="stockholm">Stockholm</option>
+                <option value="malmö">Malmö</option>    
+            </select>
             
             <div class="flexContainerStartsida">
                 <h2><a href="#"> AIK-DIF (DATUM) </a></h2>

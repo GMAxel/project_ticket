@@ -1,0 +1,168 @@
+.headerGridItem {
+    /* justify-self: end; */
+}
+.headerFlexContainer {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    height:100%;
+    /* background-color:rgba(126, 62, 62, 0.664); */
+
+}
+
+
+    .headerFlexContainer .headerFlexItem {
+        height:100%;
+    }
+
+    /* PART 1 - LOGO */
+    /* .headerFlexContainer .headerFlexItem1 {
+        border:4px solid grey;
+        flex-basis:25%;
+
+    }
+    .headerFlexContainer .headerFlexItem1 a {
+        height:100%;
+    }
+    .headerFlexContainer .headerFlexItem1 a img {
+        height:95%;
+        position:relative;
+        top:2.5%;
+    } */
+
+    /* PART 2 - Search */
+    /* .headerFlexContainer .headerFlexItem2 {} */
+
+    /* PART 3 - Login + Create Account */
+
+    .headerFlexContainer .headerFlexItem2 {
+        flex-basis:100%;
+        align-self:flex-end;
+        
+
+    }
+
+        .headerFlexContainer .headerFlexItem2 .logInContainer {
+            height:100%;
+            width:100%;
+            margin:auto;
+            position: relative;;
+        }
+
+
+        .headerFlexContainer .headerFlexItem2 .logInContainer .logInOption {
+            /* width:95px; */
+            height:100%;
+            float:left;
+            position:relative;
+            /* margin-top:2%;   */
+            /* margin-left:3%;           */
+            /* line-height:100px; */
+            /* border-left:1px solid black; */
+            /* border-right:1px solid black; */
+        }
+
+        .headerFlexContainer .headerFlexItem2 .logInContainer .logInInputs {
+            display:none;
+            background-color:rgb(255, 255, 255);
+
+
+        }
+
+        .headerFlexContainer .headerFlexItem2  .logInContainer:hover .logInInputs {
+            position:absolute;
+            display:block;
+            z-index:1000;
+            top:100%;
+            padding:20px;
+            padding-bottom:30px;
+        }
+
+        .headerFlexContainer .headerFlexItem2  .logInContainer:hover .logInInputs a {
+            /* text-decoration: none; */
+            color:black;
+            
+        }
+        .headerFlexContainer .headerFlexItem2  .logInContainer .logInInputs input {
+            height:35px;
+            font-size:0.8em;
+            padding-left:5px;
+            border:1px solid black;
+            margin-bottom:8px;
+        }
+         
+         
+        
+
+        .headerFlexContainer .headerFlexItem2 .logInContainer .logInOption a{
+                display:block;
+                width:90px;
+                height:100%;
+                text-decoration:none;
+                color:black;
+                font-weight: bold;
+                /* background-color:#292525; */
+                font-size:16px;
+                letter-spacing: .06em;
+                text-align:center;
+                line-height: 46px;
+                /* border-radius: 5px; */
+                text-transform: uppercase;
+                font-family:sans-serif;
+
+            }
+            .headerFlexContainer .headerFlexItem2  .logInContainer:hover {
+                background-color:rgb(255, 255, 255);
+            }
+
+
+
+
+                    /* LOGGED IN */
+        .headerFlexContainer .headerFlexItem2 {
+            flex-basis:100%;
+            align-self:flex-end;
+            
+    
+        }
+    
+            .headerFlexContainer .headerFlexItem2 .loggedInContainer {
+                height:100%;
+                width:100%;
+                margin:auto;
+                position: relative;;
+            }
+    
+    
+            .headerFlexContainer .headerFlexItem2 .loggedInContainer .linkContainer {
+                /* width:95px; */
+                height:100%;
+                float:left;
+                position:relative;
+                /* margin-top:2%;   */
+                /* margin-left:3%;           */
+                /* line-height:100px; */
+                /* border-left:1px solid black; */
+                /* border-right:1px solid black; */
+            }
+
+            .headerFlexContainer .headerFlexItem2 .loggedInContainer .linkContainer a{
+                display:block;
+                width:120px;
+                height:100%;
+                text-decoration:none;
+                color:black;
+                font-weight: bold;
+                /* background-color:#292525; */
+                font-size:16px;
+                letter-spacing: .05em;
+                text-align:center;
+                line-height: 46px;
+                /* border-radius: 5px; */
+                text-transform: uppercase;
+                font-family:sans-serif;
+
+            }
+            .headerFlexContainer .headerFlexItem2  .loggedInContainer:hover {
+                background-color:rgb(255, 255, 255);
+            }

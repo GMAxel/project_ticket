@@ -1,0 +1,10 @@
+.flexContainerStartsida {
+    display:flex;
+    flex-direction:column;
+}
+
+.flexContainerStartsida a {
+    text-decoration: none;
+    color:black;
+}
+

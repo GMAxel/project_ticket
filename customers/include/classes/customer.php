@@ -46,4 +46,7 @@
 
 
 
-
+// Hämta kolumnerna från angiven tabell.
+// Visa kolumnerna i input fält.
+// hämta värdena från inputfälten genom att köra en foreach med kolumnnamnen som vi satte in i inputsen.
+// 

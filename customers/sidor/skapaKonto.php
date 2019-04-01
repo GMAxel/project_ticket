@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,6 @@
 
         require_once '../include/classes/customer.php';
 
-        // $user = new Customers();
-        // $user->registerTest('customers');
 
 
         ?>
@@ -43,52 +42,23 @@
             <h1>Skapa konto</h1>
 
 
-            <form>
-                <div>
-                    <input type="text" name="firstname" placeholder="Firstname" class="signUpInputs">
-                </div>
+            <form>  
+            <?php
 
-                <div>
-                    <input type="text" name="lastname" placeholder="lastname" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="email" placeholder="email" class="signUpInputs">
-                </div>
-
-                <!-- <div>
-                    <input type="text" name="gata" placeholder="Gatunamn" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="gatuNr" placeholder="Gatunr" class="signUpInputs">
-                </div> -->
-
-                <div>
-                    <input type="text" name="phone" placeholder="Telefonnummer" class="signUpInputs">
-                </div>
-
-                <!-- <div>
-                    <input type="text" name="postnummer" placeholder="Postnummer" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="postort" placeholder="Postort" class="signUpInputs">
-                </div> -->
-
-                <div>
-                    <input type="text" placeholder="username" class="signUpInputs">
-                </div>
-                <div>
-                    <input type="password" placeholder="password" class="signUpInputs">
-                </div>
-                <div>
-                    <input type="submit" value="Skapa konto" class="signUpInputs">
-                </div>
+            $user = new Customers();
+            $columns = $user->createInputs('customers');
             
+            if(isset($_GET['createAcc'])) {
+                $user->createAccount('customers', $columns);
+
+            }
+            ?>
+
+
+            <input type="submit" name="createAcc" value="Skapa konto">
            
-        </form>
-    </main>
+            </form>
+        </main>
         
 </div>
 

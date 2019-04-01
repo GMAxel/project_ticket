@@ -33,14 +33,14 @@ body {
     position:relative;
     /* grid-template-areas:
     "logo logo . . . . . header header header header aside"
-    "logo logo search search search search search search search search search search"
+    "logo logo search ssearchearch search search search search search search search search"
     "logo logo nav nav nav nav nav nav nav nav nav nav"
 
     "main main main main main main main main main main main main"
     "footer footer footer footer footer footer footer footer footer footer footer footer";
      */
      grid-template-areas:
-     " logo  logo logo search search search search search search header header  header aside aside  "
+     " logo  logo logo search search search search search search search header  header aside aside  "
 
     "logo logo logo nav nav nav nav nav nav nav nav nav nav nav "
 

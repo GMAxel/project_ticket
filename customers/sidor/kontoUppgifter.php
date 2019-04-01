@@ -33,6 +33,9 @@
         require_once '../include/layout/search/search.php';
         require_once '../include/layout/logo/logo.php';
 
+        require_once '../include/classes/customer.php';
+
+
 
 
         ?>
@@ -47,7 +50,13 @@
             <div class="myTicketsContainer"> 
                 
             <form>
-                <div>
+                <?php
+                    $user = new Customers();
+                    $user->view('customers');
+
+
+                ?>
+                <!-- <div>
                     <input type="text" name="firstname" placeholder="Firstname" class="signUpInputs">
                 </div>
 
@@ -71,7 +80,7 @@
                 </div>
                 <div>
                     <input type="submit" value="Ändra konto" class="signUpInputs">
-                </div>
+                </div> -->
             
            
         </form>

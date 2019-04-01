@@ -32,6 +32,7 @@
         require_once '../include/layout/search/search.php';
         require_once '../include/layout/logo/logo.php';
 
+        require_once '../include/classes/customer.php';
 
 
         ?>

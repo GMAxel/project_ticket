@@ -142,6 +142,32 @@ class Customers
         }
         return $this->is_logged_in; 
     }
+
+    public function view($table) 
+    {
+        
+        $user = $_SESSION['user'];
+        
+        $stmt2 = $this->_db->prepare("SELECT * FROM $table WHERE username = :user");
+        $stmt2->execute([':user' => $user]); 
+        $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);     
+    
+        foreach($result as $col) {
+            foreach($col as $col => $value) {  
+                if($col != 'id') { 
+
+                    if($col == 'password') {
+                        echo "$col <br><div class='col-3 input-effect'> <input type='password' value='' name='$col'></div>";   
+
+                    } else {
+                    echo "$col <br><div class='col-3 input-effect'> <input class='effect-19' type='text' value='$value' name='$col'></div>";   
+                    }
+                }
+            }
+        }
+        echo "<input type='submit' value='Ändra' name='editUser'>";
+
+    }
     
 }   
 

@@ -152,7 +152,7 @@
             .headerFlexContainer .headerFlexItem2 .loggedInContainer .logoutContainer button{
                 display:block;
                 width:90px;
-                height:100%;
+                height:80%;
                 text-decoration:none;
                 color:black;
                 font-weight: bold;

@@ -1,5 +1,27 @@
 
 
+<?php
+    session_start();
+    require_once '../include/classes/customer.php';
+
+    if (isset($_GET['login'])) {
+        $user = new Customers();
+
+        if($user->login('customers')) {
+            header('Location: startsida.php');
+        };
+
+
+    }
+
+    if(isset($_GET['logOut'])) {
+        $_SESSION = [];
+    }
+
+
+?>
+
+
 <header class="gridItem headerGridItem">
     
     <section class="headerFlexContainer">
@@ -14,20 +36,37 @@
             </form>            
         </div> -->
 
+                
         <div class="headerFlexItem headerFlexItem2">
+        <?php
+        if(isset($_SESSION['logged_in'])) { ?>
+            <div class="loggedInContainer">
+                <div class="logoutContainer">
+                    <form>
+                        <button name="logOut"> Logga ut </button>
+                    </form>
+                </div>
+                <div class="linkContainer"> 
+                    <a href="minaSidor.php">Konto </a>
+                </div>  
+            </div>
 
+      <?php  }    else {   ?>
             <div class="logInContainer">
                 <div class="logInOption">
                     <a href="#"> LOG IN </a>
                 </div>
 
                 <div class="logInInputs">
-                    <input type="text" placeholder="username">
-                    <input type="password" placeholder="lösenord">
-                    <input type="submit" value="Log in">
-                    <div><a href="skapaKonto.php">Skapa Konto </a></div>
+                    <form>
+                        <input type="text" name="user" placeholder="username">
+                        <input type="password" name="pass" placeholder="lösenord">
+                        <input type="submit" name="login" value="Log in">
+                        <div><a href="skapaKonto.php">Skapa Konto </a></div>
+                    </form>
                 </div>
             </div>
+      <?php } ?>
 
             <!-- <div class="loggedInContainer">
                 <div class="linkContainer"> 

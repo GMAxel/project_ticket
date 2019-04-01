@@ -17,7 +17,6 @@ class Customers
      */
     public function createInputs($table) 
     {
-        
         // Här hämtar vi kolumnerna från angiven tabell. 
         $sql = "SHOW COLUMNS FROM $table";
         $stmtGetColumns = $this->_db->prepare($sql); 
@@ -60,10 +59,30 @@ class Customers
         $inputValues = array();
         foreach($tableColumns as $value) {
             if($value[0] != 'id') {
-                if($value[0] != 'password') {
+                
+                if($value[0] != 'password' && $value[0] != 'username') {
+
                     $inputValues [] = filter_input(INPUT_GET, $value[0]);
+                } 
+                else if($value[0] == 'username') {
+                    $inputValues [] = filter_input(INPUT_GET, $value[0]);
+
+                    $username = end($inputValues);
+                    $sql = "SELECT * FROM $table WHERE username = '$username'";
+                    $checkUsername = $this->_db->prepare($sql);
+                    $checkUsername->execute();
+                    $checkUsernameResult = $checkUsername->fetchColumn();
+                    if($checkUsernameResult) {
+                        echo "<br>Användarnamnet finns redan <br>";
+                        return false;
+                    }
+                    else {
+                        // Här kallar vi på logga in funktionen, så att kunden loggas in om den lyckades skapa konto. 
+                    }
+                    
                 }
                 else {
+
                     $pass = filter_input(INPUT_GET, $value[0]);
                     $hash = password_hash($pass, PASSWORD_DEFAULT);
                     $inputValues [] = $hash;
@@ -85,6 +104,43 @@ class Customers
             $i++;
         }
         $stmt->execute();                
+    }
+
+    
+
+    public function login($table) {
+        
+        $user = $_GET['user'];
+        $pass = $_GET['pass'];
+        // Hämta lösenordet koppålat till användarnamnet. 
+
+        $sql = "SELECT password FROM $table WHERE username = :user";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute([':user' => $user]); 
+        // Fetchcolumn hämtar ett värde istället för en array i en array. 
+        $hash = $stmt->fetchColumn();
+
+
+        // Verfifiera att lösenordet stämmer överens med hash.
+        $this->is_logged_in = password_verify($pass, $hash);
+
+
+        if($this->is_logged_in) {
+            // $sql2 = "SELECT employeeNumber FROM employees WHERE username = :user";
+            // $stmt2 = $this->db->prepare($sql2);
+            // $stmt2->execute([':user' => $user]); 
+            // $right = $stmt2->fetchColumn();
+
+            // $_SESSION['userId'] = $right;
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user'] = "$user";
+
+            foreach($_SESSION as $key => $value) {
+                echo "Sessionvärde: $key : $value <br>";
+            }
+            // $_SESSION['adminRight'] = "$right";
+        }
+        return $this->is_logged_in; 
     }
     
 }   

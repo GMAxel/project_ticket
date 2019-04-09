@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Startsida</title>
+    <title>Skapa ny arena</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/header/header.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/nav/nav.css">
@@ -38,14 +38,30 @@
     require_once '../include/classes/admin.php';
 ?>
 
-<main class="gridItem"> main
+    <div class="gridItem subMenu"> 
+        <div class="subMenuContainer">
+            <a href="arena.php" class="subMenuItem">Arenor</a>
+            <a href="createArena.php" class="subMenuItem">Skapa Ny Arena</a>
+            <a href="#" class="subMenuItem">Ändra Arena</a>
+            <a href="#" class="subMenuItem">Ta bort arena</a>
+        </div>    
+    </div>
+
+
+
+<main class="gridItem"> main -> Arena
+<form>
     <?php
-
     $user = new Admin();
-    $user->test_callProc('test');
-
-
+    $columns = $user->createInputs('arenas');
+    
+    if (isset($_GET['createArena'])) {
+        $user->createAccount('arenas', $columns);
+    }
     ?>
+        <input type="submit" name="createArena" value="Skapa Arena">
+    </form>
+
 </main>
 </div>
 

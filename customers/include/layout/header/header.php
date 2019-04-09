@@ -16,6 +16,7 @@
 
     if(isset($_GET['logOut'])) {
         $_SESSION = [];
+        header('Location: startsida.php');
     }
 
 

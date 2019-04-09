@@ -38,14 +38,36 @@
     require_once '../include/classes/admin.php';
 ?>
 
-<main class="gridItem"> main
-    <?php
+    <div class="gridItem subMenu"> 
+        <div class="subMenuContainer">
+            <a href="event.php" class="subMenuItem">Events</a>
+            <a href="createEvent.php" class="subMenuItem">Skapa Nytt Event</a>
+            <a href="#" class="subMenuItem">Ändra Event</a>
+            <a href="#" class="subMenuItem">Ta bort Event</a>
+        </div>
+    
+    </div>
 
-    $user = new Admin();
-    $user->test_callProc('test');
 
 
-    ?>
+<main class="gridItem"> 
+    <form method="post">
+        <?php
+        $user = new Admin();
+        $columns = $user->test_getColumnNames('customers');
+
+        $user->test_createInputs();
+
+        // $user->test_createUser();
+
+
+        if (isset($_GET['createAcc'])) {
+            
+            $user->test_createUser();
+        }
+        ?>
+        <input type='submit' name='createAcc' value='Create Account'>
+    </form>
 </main>
 </div>
 

@@ -56,6 +56,7 @@
 
 
                 ?>
+                
                 <!-- <div>
                     <input type="text" name="firstname" placeholder="Firstname" class="signUpInputs">
                 </div>

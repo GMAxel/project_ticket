@@ -1,0 +1,20 @@
+form#multiphase {
+    border:1px solid #000; 
+    padding: 24px;
+    width:800px;
+    margin:auto;
+}
+
+form#multiphase > #phase2, #phase3, #show_all_data {
+    display:none;
+}
+
+#progressBar {
+    width:500px;
+}
+
+
+
+form#multiphase input {
+    /* width:50%; */
+}

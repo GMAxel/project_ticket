@@ -1,0 +1,31 @@
+.searchGridItem {
+}
+
+.searchContainer form {
+    height:100%;
+    width:100%;
+    position:relative;
+}
+
+.searchContainer form input {
+    height:40px;
+    width:40%;
+    position:relative;
+    border-radius: 10px 0 0 10px;
+    outline:none;
+    border:1px solid black;
+    padding-left:3%;
+    top:5px;
+    right:5%;
+
+}
+
+.searchContainer form input[type="submit"] {
+    width:8%;
+    min-width:50px;
+    position: relative;
+    /* right:10px; */
+    border-radius: 0 10px 10px 0;
+    padding:0;
+    right:10%;
+}

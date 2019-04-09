@@ -1,0 +1,36 @@
+
+
+.navFlexContainer {
+    display:flex;
+    height:100%;
+}
+
+
+.navFlexContainer .navPart {
+    flex:1;
+    height:100%;
+    border-top:2px solid black;
+    /* border-bottom:2px solid black; */
+
+}
+
+
+.navFlexContainer .navPart a {
+    text-decoration: none;
+    color:black;
+    height:100%;
+    display:block;
+    line-height:38px;
+}
+
+.navFlexContainer .navPart a:hover {
+    background-color:wheat;
+    border-bottom:2px solid black;
+    border-left:2px solid black;
+    border-right:2px solid black;
+
+    /* transition:border-bottom 2s; */
+}
+
+
+

@@ -38,14 +38,19 @@
     require_once '../include/classes/admin.php';
 ?>
 
-<main class="gridItem"> main
-    <?php
+    <div class="gridItem subMenu"> 
+        <div class="subMenuContainer">
+            <a href="arena.php" class="subMenuItem">Arenor</a>
+            <a href="createArena.php" class="subMenuItem">Skapa Ny Arena</a>
+            <a href="#" class="subMenuItem">Ändra Arena</a>
+            <a href="#" class="subMenuItem">Ta bort arena</a>
+        </div>
+    
+    </div>
 
-    $user = new Admin();
-    $user->test_callProc('test');
 
 
-    ?>
+<main class="gridItem"> main -> Arena
 </main>
 </div>
 

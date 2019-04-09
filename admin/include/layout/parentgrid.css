@@ -1,0 +1,102 @@
+html {
+    box-sizing: border-box;
+
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+body {
+    text-align:center;
+    font-family:monospace;
+    /* background-color:rgb(240, 240, 240); */
+    margin:0;
+    padding:0;
+}
+
+.gridContainer > * {
+    /* color:wheat; */
+    font-size:1.4em;
+}
+
+
+
+.gridContainer {
+
+    display:grid;
+    grid-template-columns: repeat(14, 1fr);
+    /* grid-auto-rows:minmax(50px, auto); */
+    grid-auto-rows:50px  46px 50px minmax(620px, min-content) 150px;
+    /* grid-gap:5px; */
+    /* max-width:1400px;  */
+    margin: 0 auto;
+    position:relative;
+    /* grid-template-areas:
+    "logo logo . . . . . header header header header aside"
+    "logo logo search ssearchearch search search search search search search search search"
+    "logo logo nav nav nav nav nav nav nav nav nav nav"
+
+    "main main main main main main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer footer footer";
+     */
+     grid-template-areas:
+    
+
+    "logo logo logo nav nav nav nav nav nav nav nav nav nav nav "
+    " logo  logo logo search search search search search search search search search search search"
+    "subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu subMenu"
+
+    " main main main main main main main main main main main main main main"
+    "footer footer footer footer footer footer footer footer footer footer footer footer footer footer";
+    
+}
+
+header {
+    grid-area:header;
+    background-color:rgb(245, 245, 252);
+
+    /* grid-row:1/3; */
+}   
+nav {
+    grid-area:nav;
+    /* background-color:rgb(166, 190, 166); */
+    /* grid-row:3/4; */
+    text-transform: uppercase;
+    font-weight:bold;
+
+}
+aside {
+    grid-area:aside;
+    background-color:rgb(245, 245, 252);
+
+    /* background-color:rgb(97, 58, 58); */
+    /* grid-row:3/4; */ 
+}
+main {
+    grid-area:main;
+    background-color:rgb(231, 231, 233);
+    /* grid-row:4/12; */
+}
+footer {
+    grid-area:footer;
+    background-color: rgb(109, 104, 100);
+    /* grid-row:12/14; */
+}
+.searchGridItem {
+    background-color:rgb(245, 245, 252);
+
+    grid-area:search;
+    /* background-color: rgb(58, 49, 41); */
+    /* grid-row:12/14; */
+}
+.logoGridItem {
+    grid-area:logo;
+    background-color:rgb(150, 150, 160);
+    /* grid-row:12/14; */
+}
+.subMenu {
+    grid-area:subMenu;
+    background-color:rgb(213, 213, 233);
+
+
+}

@@ -1,0 +1,24 @@
+.subMenuContainer {
+    display:flex;
+    justify-content: space-evenly;
+    margin-top:10px;
+}
+.subMenuContainer .subLinkContainer {
+    flex-basis:10%;
+    border-radius: 10px;
+    border-bottom:2px solid black;
+
+
+}
+.subMenuContainer .subLinkContainer a {
+    display:blocK;
+    height:100%;
+    color:black;
+    line-height:30px;
+    text-decoration:none;
+}
+.subMenuContainer .subLinkContainer a:hover {
+
+    background-color:rgb(178, 178, 226);
+
+}

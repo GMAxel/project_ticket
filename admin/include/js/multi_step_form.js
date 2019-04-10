@@ -303,7 +303,7 @@
                     input.name        =   input_names[cell];
                     input.placeholder =   input_placeholders[cell];
                     input.id          =   input_id[cell] + cell;
-                    input.className       =   input_class[cell];
+                    input.className   =   input_class[cell];
 
                     console.log(input_class[cell]);
                 }

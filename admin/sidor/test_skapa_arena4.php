@@ -1,16 +1,7 @@
 <?php
     session_start();
     require_once '../include/classes/admin4.php';
-
-
-// if(isset($_GET['showSections'])) {
-//     $user = new Admin();
-
-//     $user->test_createArena();
-// }
-
-
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -34,8 +25,6 @@
 </head>
 <body>
 
-
-
 <div class="gridContainer"> 
 
 <?php 
@@ -46,58 +35,139 @@
 
 ?>
 
-<main class="gridItem"> 
+    <main class="gridItem"> 
 
-<?php
-    $user2 = new Admin4();
-    $tables = array('arenas', 'arenaSections', 'arenaSectionRows', 'arenaSectionRowSeats');
-    
-?>           
+        <progress id="progressBar" value="0" max="100"></progress>
+        <h3 id="status"> Fas 1 </h3>
 
+        <form id="multiphase" onsubmit="return false"> 
 
-<?php
+            <div id="phase1">
+                Arena Name  <br>   <input type="text"   id="arenaName"  name="arenaName">  <br>
+                Capacity    <br>   <input type="number" id="capacity"   name="capacity">   <br>
+                Address     <br>   <input type="text"   id="address"    name="address">    <br>
+                Postalcode  <br>   <input type="text"   id="postalcode" name="postalcode"> <br>
+                Postalarea  <br>   <input type="text"   id="postalarea" name="postalarea"> <br>
+                Region      <br>   <input type="text"   id="region"     name="region">     <br>
 
-    $i = 1;
-    foreach($tables as $table) 
-    { ?>
-        <form action='test_skapa_arena4?lol=lol' id='multiphase' onsubmit='return false'>
-            <div id='phase1'>
-        <?php
-        $user2->test_getColumnNames($table);
-        $user2->test_showInputs();        
+                <br><button type="button" onclick="processPhase1()"> 
+                    Continue
+                </button><br>
 
-                    if($table == 'arenaSections') 
-                    { ?>
+            </div>
 
-                        <div id='sectionsContainer'>             
-                            <button name='sektionerValda' onclick='chosenSections()'>
-                                Get sections
-                            </button>
-                            <input type='hidden' name='hidden_sectionsAmount' id='hidden_sectionsAmount' value='0'>
-                        </div>
+            <div id="phase2">
 
-                <?php } ?>
+                <input type="number" id="nrOfSections" placeholder="Antal Sektioner"><br>
 
-                <!-- <button onclick='processPhase$i()'>Continue</button> -->
-            </div> 
-            <input type="submit" value="SKICKA_<?php $i?>">
+                <button name="test_getSections" onclick="createSections()">
+                    Create sections 
+                </button><br>
+                <button type="button" name="test_getSection" onclick="createSection()">
+                    Create one more 
+                </button><br>
 
-        </form>
+                <br><button type="button" onclick="processPhase2()"> 
+                    Continue
+                </button><br>
 
-        <?php  $i++;
-    }
-        ?>
-    
+            </div>
 
 
+            <div id="phase3">
+                <h1> fas 3 </h1>
 
+                <!-- <input type="number" id="test_nrOfSections" placeholder="Antal Sektioner"><br>
 
+                <button type="button" name="test_getSections" onclick="test_createSections()">
+                    Create sections 
+                </button><br>
 
+                <button type="button" name="test_getSection" onclick="test_createSection()">
+                    Create one more 
+                </button><br> -->
 
+                <!-- <br><button type="button" onclick="processPhase3()"> 
+                    Continue
+                </button><br> -->
 
+            </div>
+            <div id="phase4">
+                <h1> fas 4 </h1>
+
+                <!-- <input type="number" id="test_nrOfSections" placeholder="Antal Sektioner"><br>
+
+                <button type="button" name="test_getSections" onclick="test_createSections()">
+                    Create sections 
+                </button><br>
+
+                <button type="button" name="test_getSection" onclick="test_createSection()">
+                    Create one more 
+                </button><br> -->
+
+                <!-- <br><button type="button" onclick="processPhase3()"> 
+                    Continue
+                </button><br> -->
+
+            </div>
+            <div id="show_all_data">
+
+                <table>
+                    <tr>
+                        <th>Arena</th>
+                        <th>Kapacitet</th>
+                        <th>Adress</th>
+                        <th>Postnummer</th>
+                        <th>Postort</th>
+                        <th>region</th>
+                    </tr>
         
-    
-</main>
+                    <tr>
+                       <td id="display_arena"></td>
+                       <td id="display_capacity"></td>
+                       <td id="display_address"></td>
+                       <td id="display_postalcode"></td>
+                       <td id="display_postalarea"></td>
+                       <td id="display_region"></td>
+                       <td id=""></td>
+                    </tr>
+
+                </table>
+
+                <table>
+                    <tr>
+                        <th>Arena</th>
+                        <th>Kapacitet</th>
+                        <th>Adress</th>
+                        <th>Postnummer</th>
+                        <th>Postort</th>
+                        <th>region</th>
+                    </tr>
+        
+                    <tr>
+                       <td id="display_arena"></td>
+                       <td id="display_capacity"></td>
+                       <td id="display_address"></td>
+                       <td id="display_postalcode"></td>
+                       <td id="display_postalarea"></td>
+                       <td id="display_region"></td>
+                       <td id=""></td>
+                    </tr>
+
+                    <tr id="rad_data">
+
+                    </tr>
+
+                </table>
+
+                
+             
+
+                <button onclick="submitForm()">Submit Data </button>
+            </div>
+
+        <form>        
+    </main>
 </div>
 
 

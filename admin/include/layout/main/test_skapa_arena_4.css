@@ -5,9 +5,8 @@ form#multiphase {
     margin:auto;
 }
 
-form#multiphase > #phase2, #phase3, #show_all_data {
-    /* display:none; */
-    border:2px solid black;
+form#multiphase > #phase2, #phase3, #phase4, #show_all_data {
+    display:none;
     margin-top:40px;
 }
 

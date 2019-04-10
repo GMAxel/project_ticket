@@ -1,0 +1,90 @@
+var sections = tom array. 
+
+funktion för att lägga till sektioner i sections. 
+
+Varje sektion kommer representeras av ett objekt. Det objektet har nycklar.
+
+Representera datan internt på ett sätt, och externt på annat.
+
+Internt:
+Sektion:
+- nycket = id.
+- Nyckel = rows.
+- nyckel = totalSeats,
+- 
+
+
+add row to section.
+
+En knapp för att lägga till sektioner, 
+En knapp för att lägga till rader, 
+En knapp för att ta bort rader.
+En knapp för att ta bort sektioner.
+
+
+
+Skapa arena:
+ - namn,
+ - plats,
+ - antal platser.
+
+
+ Skapa sektion (vet vilken arena):
+ Lägg till antal sektioner [ x ];
+ 
+
+ _NAMN_ -- _INGÅNG_ -- _antal platser_ 
+1.                                          [ TA BORT ]
+___________________________________________
+2.                                          [ TA BORT ]
+___________________________________________
+3.                                          [ TA BORT ]
+___________________________________________
+4.                                          [ TA BORT ]
+___________________________________________
+
+ Skapa rader:
+
+ Sektionnamn1: Välj antal rader [x];
+ Sektionnamn2: Välj antal rader [x];
+ Sektionnamn3: Välj antal rader [x];
+ Sektionnamn4: Välj antal rader [x];
+ 
+ Visa rader; 
+
+
+
+EN funktion som skapar flera section: createSections.
+    I funktionen:
+        - Argument:
+            * Hur många sektioner. 
+            * 
+            * 
+        - Loop.
+        -
+
+En funktion som skapar en section: createSection. 
+
+
+
+
+Så vi behöver en funktion som:
+- skapar sektioner,
+-  en funktion som skapar en sektion,
+-  en funktion som tar bort vald sektion.
+
+Sen behöver vi en funktion som
+- skapar rader, 
+- skapar en rad, 
+- tar bort vald rad. 
+
+funktionen som skapar rader kanske ska ta en sektion som argument? 
+eller function -___ () {
+    för varje sektion ska vi hämta antalet rader, och skapa de. 
+}
+
+
+
+
+
+

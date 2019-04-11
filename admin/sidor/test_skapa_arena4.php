@@ -112,7 +112,7 @@
             </div>
             <div id="show_all_data">
 
-                <table>
+                <!-- <table>
                     <tr>
                         <th>Arena</th>
                         <th>Kapacitet</th>
@@ -158,7 +158,7 @@
 
                     </tr>
 
-                </table>
+                </table> -->
 
                 
              

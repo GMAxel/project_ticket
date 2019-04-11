@@ -88,3 +88,111 @@ eller function -___ () {
 
 
 
+
+
+Phase 1:
+- Arena namn
+- kapacitet,
+- adress,
+- postkod,
+- postort,
+- region. 
+
+Phase 2:
+- sektioner,
+- entreer,
+- antal seats.
+
+Phase 3
+- 
+- Antal rader på sektioner.
+- Antal platser på raderna. 
+
+Phase 4
+- Visa information om den data vi har hämtat. 
+
+Så vi vill hämta data och skriva ut data. 
+
+VI behöver inte skicka med data, vi behöver bara visa data. Innan vi är framme dvs.
+
+Så vi behöver att sektionerna 
+
+
+Arena: 
+- Arena namn
+- kapacitet,
+- adress,
+- postkod,
+- postort,
+- region. 
+- sektioner: [1, 2]
+
+arena {
+    namn: solna,
+    kapacitet: 200,
+    adress: asdfsafd,
+    postkod: 123123,
+    postort: kdad,
+    region: sthlm,
+    sektioner: []
+}
+
+
+Sektioner: [
+    0 {
+        - Sektionens Namn,
+        - Entré,
+        - ANtal säten.
+        - rader [0, 1]
+    },
+    1 {
+        - Sektionens Namn,
+        - Entré,
+        - ANtal säten.
+        - rader [2, 3]
+    }
+
+]
+
+Rader: [
+    0 {
+        Radnr: 
+        antal säten:
+    },
+    1 {
+        Radnr:
+        Antal säten
+    },
+    2 {
+        Radnr:
+        Antal säten
+    },
+    3 {
+        Radnr:
+        Antal säten
+    }
+]
+
+För varje sektion så ska vi hämta alla rader.
+
+
+// hämta alla sektioner så vi kan utgå från hur många det är när vi hämtar sektionerna. 
+let p3_allaSektioner = document.getElementsByClassName("p3_sectionContainer");
+let p3_allaSektioner_arr = Array.from(p3_allaSektioner);
+
+
+
+
+allaRaderPåSektionen;
+
+
+for(let sektion_index = 0; sektion_index < p3_allaSektioner_arr.length; sektion_index++) {
+
+
+    for(let i = 0; i < allaSektioner.length) {
+
+    }
+}
+
+
+2 rader, 4 rader. 

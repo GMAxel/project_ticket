@@ -3,6 +3,14 @@ function _(elementId) {
 }
 
 
+var arena_sections_rows =  {
+
+};
+
+// används ej. 
+var all_arena_sections =  [
+
+];
 
 
 var section_input_options = 
@@ -36,7 +44,6 @@ var input_rows_options =
         type: 'hidden',
         name: 'hidden_row_number_',
         id: 'hidden_row_number_',
-        value: 'Row '
     },
     {
         type: 'number',
@@ -44,7 +51,7 @@ var input_rows_options =
         id: 'row_nrOfSeats_',
         placeholder: 'Available Seats',
         value: '',
-        className: 'row'
+        className: 'row_sektion_'
     }
 ]; 
 
@@ -129,46 +136,48 @@ function createRows()
 
     // det vi först vill veta, är hur många sektioner det är. Sedan välja en sektion och se hur många rader som är valda i den sektionen. 
 
-
-    for(let sectionIndex = 0; sectionIndex < nrOfRowsArr.length; sectionIndex++) 
+    let class_index = 0;
+    for(let sectionIndex = 0; sectionIndex <= nrOfRowsArr.length; sectionIndex++) 
     {
         // Här hämtar vi en specifik section continaer, så vi kan sätta fast rader på rätt sektion. 
         let sectionRowContainer = document.getElementById('p3_sectionContainer_' + sectionIndex);
-        let h4_innertext = _('sektion_' + sectionIndex).innerHTML;
-        console.log('sectionRowContainer')
-        console.log(sectionRowContainer)
+        // let h4_innertext = _('sektion_' + sectionIndex).innerHTML;
+        
 
 
-
+        class_index++;
         // Här hämtar vi hur många rader som ska skapas i containern
         let sectionRows  = document.getElementById('nr_of_rows_' + sectionIndex).value;
 
-        for(let i = 0; i < sectionRows; i++) {
+        for(let i = 1; i <= sectionRows; i++) {
             
             input_rows_options.forEach(function(element) {   
                 let new_row_container = document.createElement('div');
                     new_row_container.className = 'p3_rowContainer';    
                       
                 
-                    
+                let input = document.createElement('input');
+
+
                 if(element.type != 'hidden') {
                 let span = document.createElement('span');
                     span.innerHTML = 'Rad ' + i + ' ';
                     span.id = 'Rad_' + i;                    
                     new_row_container.appendChild(span);
+                    input.className = element.className + class_index;
+
                 }
 
               
 
-                let input = document.createElement('input');
+            
                     input.type = element.type;
                     input.name = element.name + i;
                     input.id = element.id + i;
-                    input.placeholder = element.placeholder,
-                    input.className = element.className + h4_innertext;
+                    input.placeholder = element.placeholder;
 
                 if(element.type == 'hidden') {
-                    input.value = element.value + i;
+                    input.value =  i;
                 }
 
                     new_row_container.appendChild(input);
@@ -196,6 +205,42 @@ var get_p2_sections, p2_sections;
 function processPhase1() 
 {
 
+    let arena_input = _("arenaName").value
+    let cap_input = _("capacity").value
+    let address_input = _("address").value
+    let postcode_input = _("postalcode").value
+    let postarea_input = _("postalarea").value
+    let region_input = _("region").value
+
+    arena_sections_rows.arena = arena_input;
+    arena_sections_rows.capacity = cap_input;
+    arena_sections_rows.address = address_input;
+    arena_sections_rows.postalcode = postcode_input;
+    arena_sections_rows.postalarea = postarea_input;
+    arena_sections_rows.region = region_input;
+    arena_sections_rows.sections = [];
+
+
+    console.log(arena_sections_rows);
+
+    // arena_sections_rows.push(input);
+
+
+    let arena_info = arena_input + cap_input + address_input + postcode_input + postarea_input + region_input;
+    
+    let p = document.createElement('p');
+    p.innerHTML = arena_info;
+
+    let phase2 =  _("phase2");
+    phase2.appendChild(p);
+
+
+
+
+    
+
+
+
 
     _("phase1").style.display = "none";
     _("phase2").style.display = "block";
@@ -211,6 +256,36 @@ function processPhase2()
     // Sektioner från Phase 2
     get_p2_sections = document.getElementsByClassName('p2_sectionsContainer');
     p2_sections = Array.from(get_p2_sections)
+    console.log(p2_sections);
+
+    for(let i = 0; i < p2_sections.length; i++) {
+        let section_input = _('section_name_' + i).value;
+        let entrance_input = _('entrance_' + i).value;
+        let seats_input = _('nrOfSeats_' + i).value;
+
+        let arena_section = { };
+
+        arena_section.section = section_input;
+        arena_section.entrance = entrance_input;
+        arena_section.seats = seats_input;
+        arena_section.rows = [];
+
+        
+        arena_sections_rows.sections.push(arena_section);
+
+
+    }
+    console.log(arena_sections_rows);
+    console.log(arena_sections_rows.sections);
+    console.log(arena_sections_rows.sections[0]);
+    console.log(arena_sections_rows.sections[0].rows);
+
+
+    // arena_sections_rows.sections.push(all_arena_sections);
+
+    console.log(all_arena_sections);
+    console.log(arena_sections_rows);
+
 
     // <br>.
     var br = document.createElement('br');
@@ -296,7 +371,65 @@ function processPhase3()
 
     // Hämta Alla sektioner från fas 3.
     let p3_sections = document.getElementsByClassName('p3_sectionContainer');
-    let p3_sections_arr = Array.from(p3_sections)
+    let p3_sections_arr = Array.from(p3_sections);
+
+    // En loop per sektion. 
+    let arena_section_index = 0;
+    for(let sektion_i = 1; sektion_i <= p3_sections_arr.length; sektion_i++) {
+        let p3_section_rows = document.getElementsByClassName('row_sektion_'+ sektion_i);
+        let p3_section_rows_arr = Array.from(p3_section_rows);
+
+        
+
+
+        // 2, 4
+        console.log(p3_section_rows_arr.length);
+
+        // En loop per rad i sektion. 
+        for(let row_i = 0; row_i < p3_section_rows_arr.length; row_i++) {
+            // 0, 1, 0, 
+            console.log(row_i);
+            let row_seats = p3_section_rows_arr[row_i]
+
+            // let row_nr = _("hidden_row_number_" + row_i).value;
+            // let row_seats = _("row_nrOfSeats_" + row_i).value;
+
+            let each_section_rows = {
+                // number: i +1,
+                seats: row_seats
+            };
+
+            // 0, 0, 0
+            console.log(arena_section_index);
+            // rad1, rad2
+            console.log(each_section_rows);
+
+
+            arena_sections_rows.sections[arena_section_index].rows.push(each_section_rows);
+        }
+        arena_section_index++;
+
+    }
+    
+    console.log(arena_sections_rows);
+    console.dir(arena_sections_rows);
+
+    // let send_test_data = ('show_all_data');
+
+    // arena_sections_rows.forEach(function(element) {
+
+    //     let p = document.createElement('p');
+    //     p.innerHTML = element;
+
+    //     send_test_data.appendChild(p);
+
+    // });
+
+
+
+
+    // console.log(arena_sections_rows.sections);
+
 
 
     // Hämta alla rader från fas 3.
@@ -401,13 +534,13 @@ function processPhase3()
 
     }
 
-    var output = '';
-    for (var property in allRows) {
-      output += property + ': ' + allRows[property]+'; ';
-    }
-    alert(output);
+    // var output = '';
+    // for (var property in allRows) {
+    //   output += property + ': ' + allRows[property]+'; ';
+    // }
+    // alert(output);
 
-    console.dir(allRows);
+    // console.dir(allRows);
 
     
 

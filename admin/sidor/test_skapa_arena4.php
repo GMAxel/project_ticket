@@ -1,6 +1,13 @@
 <?php
     session_start();
-    require_once '../include/classes/admin4.php';
+    // require_once '../include/classes/admin4.php';
+    // require_once '../include/classes/admin.php';
+    // require_once '../include/classes/admin4.php';
+        require_once '../include/classes/admin5.php';
+
+
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +29,8 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/parentgrid.css">
     <script src="../include/js/multi_step_form2.js"></script>
+    <script src="../include/js/multi_step_form3.js"></script>
+
 </head>
 <body>
 
@@ -43,31 +52,33 @@
         <form id="multiphase" onsubmit="return false"> 
 
             <div id="phase1">
-                Arena Name  <br>   <input type="text"   id="arenaName"  name="arenaName">  <br>
-                Capacity    <br>   <input type="number" id="capacity"   name="capacity">   <br>
-                Address     <br>   <input type="text"   id="address"    name="address">    <br>
-                Postalcode  <br>   <input type="text"   id="postalcode" name="postalcode"> <br>
-                Postalarea  <br>   <input type="text"   id="postalarea" name="postalarea"> <br>
-                Region      <br>   <input type="text"   id="region"     name="region">     <br>
+                <div id="phase_1_input-container"> 
+                </div>
+     
 
                 <br><button type="button" onclick="processPhase1()"> 
                     Continue
                 </button><br>
 
+                <button id="btnSetCookie"> Set cookie </button>
+                <button id="btnSetCookieArray"> Set Cookie array </button>
+                <button id="btnShowCookies"> Show Cookies</button>
+                <button id="btnDeleteCookie"> Delete Cookie (foo) </button>
+
             </div>
 
             <div id="phase2">
-
                 <input type="number" id="nrOfSections" placeholder="Antal Sektioner"><br>
-
                 <button name="test_getSections" onclick="createSections()">
                     Create sections 
-                </button><br>
-                <button type="button" name="test_getSection" onclick="createSection()">
+                </button>
+                <div id="phase_2_input-container"> 
+                </div>
+                <!-- <button type="button" name="test_getSection" onclick="createSection()">
                     Create one more 
-                </button><br>
+                </button><br> -->
 
-                <br><button type="button" onclick="processPhase2()"> 
+                <br><button type="button" id="phase2_continue" onclick="processPhase2()"> 
                     Continue
                 </button><br>
 
@@ -76,94 +87,35 @@
 
             <div id="phase3">
                 <h1> fas 3 </h1>
+                <div id="phase3_input_container">
+                </div>
 
-                <!-- <input type="number" id="test_nrOfSections" placeholder="Antal Sektioner"><br>
+                <button onclick="processPhase3()">Continue</button> 
 
-                <button type="button" name="test_getSections" onclick="test_createSections()">
-                    Create sections 
-                </button><br>
-
-                <button type="button" name="test_getSection" onclick="test_createSection()">
-                    Create one more 
-                </button><br> -->
-
-                <!-- <br><button type="button" onclick="processPhase3()"> 
-                    Continue
-                </button><br> -->
 
             </div>
+            
             <div id="phase4">
                 <h1> fas 4 </h1>
 
-                <!-- <input type="number" id="test_nrOfSections" placeholder="Antal Sektioner"><br>
-
-                <button type="button" name="test_getSections" onclick="test_createSections()">
-                    Create sections 
-                </button><br>
-
-                <button type="button" name="test_getSection" onclick="test_createSection()">
-                    Create one more 
-                </button><br> -->
-
-                <!-- <br><button type="button" onclick="processPhase3()"> 
-                    Continue
-                </button><br> -->
-
+    
             </div>
-            <div id="show_all_data">
+            <div id="show_all_data">    
 
-                <!-- <table>
-                    <tr>
-                        <th>Arena</th>
-                        <th>Kapacitet</th>
-                        <th>Adress</th>
-                        <th>Postnummer</th>
-                        <th>Postort</th>
-                        <th>region</th>
-                    </tr>
-        
-                    <tr>
-                       <td id="display_arena"></td>
-                       <td id="display_capacity"></td>
-                       <td id="display_address"></td>
-                       <td id="display_postalcode"></td>
-                       <td id="display_postalarea"></td>
-                       <td id="display_region"></td>
-                       <td id=""></td>
-                    </tr>
+             <table id="show_arena_table">
+                </table>
+  
 
+                <table id="show_section_table">
                 </table>
 
-                <table>
-                    <tr>
-                        <th>Arena</th>
-                        <th>Kapacitet</th>
-                        <th>Adress</th>
-                        <th>Postnummer</th>
-                        <th>Postort</th>
-                        <th>region</th>
-                    </tr>
-        
-                    <tr>
-                       <td id="display_arena"></td>
-                       <td id="display_capacity"></td>
-                       <td id="display_address"></td>
-                       <td id="display_postalcode"></td>
-                       <td id="display_postalarea"></td>
-                       <td id="display_region"></td>
-                       <td id=""></td>
-                    </tr>
+                <table id="show_row_table"> 
+                    
 
-                    <tr id="rad_data">
 
-                    </tr>
+                </table>              
 
-                </table> -->
-
-                
-             
-
-                <button onclick="submitForm()">Submit Data </button>
+                <button onclick="submitForm()"> Skapa Arena </button>
             </div>
 
         <form>        

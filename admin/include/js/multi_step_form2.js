@@ -272,13 +272,13 @@ function processPhase2()
 
         
         arena_sections_rows.sections.push(arena_section);
-
-
     }
     console.log(arena_sections_rows);
     console.log(arena_sections_rows.sections);
     console.log(arena_sections_rows.sections[0]);
     console.log(arena_sections_rows.sections[0].rows);
+
+
 
 
     // arena_sections_rows.sections.push(all_arena_sections);
@@ -413,6 +413,39 @@ function processPhase3()
     
     console.log(arena_sections_rows);
     console.dir(arena_sections_rows);
+
+    // let php_obj = js_obj_to_php_obj(arena_sections_rows);
+
+    let php_obj = js_obj_to_string(arena_sections_rows);
+
+    console.log(php_obj);
+
+    sayHelloWorld(php_obj);
+
+
+    // let _display_arena = [
+    //     arena_sections_rows.arena.value,
+    //     arena_sections_rows.capacity.value,
+    //     arena_sections_rows.address.value,
+    //     arena_sections_rows.postalcode.value,
+    //     arena_sections_rows.postalarea.value,
+    //     arena_sections_rows.region.value
+    // ]
+    // // arena_sections_rows.sections = [];
+
+
+    // _display_arena.forEach(function(element) {   
+    //     let _arena_displayed = document.createElement('p');
+    //         _arena_displayed.innerHTML = element;
+    //         // new_row_container.className = 'p3_rowContainer';    
+    //         document.getElementById('show_all_data').appendChild(_arena_displayed);       
+    // });
+
+
+
+
+    
+
 
     // let send_test_data = ('show_all_data');
 
@@ -566,15 +599,15 @@ function processPhase3()
     _("show_all_data").style.display = "block";
 
 
-    _("display_arena").innerHTML = arenaName;
-    _("display_capacity").innerHTML = arenaCapacity;
-    _("display_address").innerHTML = address;
-    _("display_postalcode").innerHTML = postalcode;
-    _("display_postalarea").innerHTML = postalarea;
-    _("display_region").innerHTML = region;
+    // _("display_arena").innerHTML = arenaName;
+    // _("display_capacity").innerHTML = arenaCapacity;
+    // _("display_address").innerHTML = address;
+    // _("display_postalcode").innerHTML = postalcode;
+    // _("display_postalarea").innerHTML = postalarea;
+    // _("display_region").innerHTML = region;
     
-    _("display_").innerHTML =
-    _("display_").innerHTML =
+    // _("display_").innerHTML =
+    // _("display_").innerHTML =
 
 
     _("progressBar").value = 100;
@@ -603,5 +636,43 @@ function processPhase3()
     //    });
     // }
 }
+
+
+function js_obj_to_string(object) {
+
+    let string = JSON.stringify(object);
+    return string;
+}
+
+function js_obj_to_php_obj(object) {
+
+    var json = "{";
+    for(property in object) {
+        var value = object[property];
+        if(typeof(value) == "string") {
+            json += '"'+property+'":"' +value+ '",'
+        } else {
+            if(!value[0]) {
+                json += '"' + property + '":' + js_obj_to_php_obj(value)+',';
+            } else {
+                json += '"' + property + '":[';
+                for(prop in value) json += '"' + value[prop] + '",';
+                json = json.substr(0, json.length-1) + "],";
+            }
+        }
+    }
+    return json.substr(0, json.length-1) + "}";
+}
+
+function sayHelloWorld(hello) {
+
+        window.location.href = "../include/classes/admin4.php?str=" + hello;
+}
+    
+
+
+
+
+
 
     

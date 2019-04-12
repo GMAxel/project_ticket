@@ -1,6 +1,15 @@
 
 <?php
-require_once '../../includeAll/klasser/db.php';
+echo "hit kommer vi";
+
+require_once '/app/public/projektarbete/project_ticket/includeAll/klasser/db.php';
+
+if(isset($_GET['str'])) {
+    $obj = new Admin4();
+    $strängen_1 = $_GET['str'];
+    $strängen_2 = $obj->json_str_to_obj($strängen_1);
+    var_dump($strängen_2);
+}
 
 class Admin4 {
 
@@ -17,6 +26,13 @@ class Admin4 {
             $db = new DB();
             $this->_db = $db->pdo;
     }
+
+
+    function json_str_to_obj($str)
+    {
+        return json_decode(stripslashes($str));
+    }
+
 
 
 

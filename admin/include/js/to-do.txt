@@ -118,81 +118,24 @@ VI behöver inte skicka med data, vi behöver bara visa data. Innan vi är framm
 Så vi behöver att sektionerna 
 
 
-Arena: 
-- Arena namn
-- kapacitet,
-- adress,
-- postkod,
-- postort,
-- region. 
-- sektioner: [1, 2]
+Göra till cookies: 
 
-arena {
-    namn: solna,
-    kapacitet: 200,
-    adress: asdfsafd,
-    postkod: 123123,
-    postort: kdad,
-    region: sthlm,
-    sektioner: []
-}
-
-
-Sektioner: [
-    0 {
-        - Sektionens Namn,
-        - Entré,
-        - ANtal säten.
-        - rader [0, 1]
-    },
-    1 {
-        - Sektionens Namn,
-        - Entré,
-        - ANtal säten.
-        - rader [2, 3]
-    }
-
-]
-
-Rader: [
-    0 {
-        Radnr: 
-        antal säten:
-    },
-    1 {
-        Radnr:
-        Antal säten
-    },
-    2 {
-        Radnr:
-        Antal säten
-    },
-    3 {
-        Radnr:
-        Antal säten
-    }
-]
-
-För varje sektion så ska vi hämta alla rader.
-
-
-// hämta alla sektioner så vi kan utgå från hur många det är när vi hämtar sektionerna. 
-let p3_allaSektioner = document.getElementsByClassName("p3_sectionContainer");
-let p3_allaSektioner_arr = Array.from(p3_allaSektioner);
+OBJEKT:
+- arena
 
 
 
 
-allaRaderPåSektionen;
+Tanken:
 
 
-for(let sektion_index = 0; sektion_index < p3_allaSektioner_arr.length; sektion_index++) {
+Tanken är att vi ska för varje del i formuläret ska:
+- Hämta och lagra data som objekt.
+- Lagra data i en cookie med hjälp av JSON.stringify.
+
+Så då har vi en funktion som skapar inputsen. 
+En funktion som hämtar värdena från dessa inputs och lagrar de i en cookie. 
 
 
-    for(let i = 0; i < allaSektioner.length) {
 
-    }
-}
-
-
-2 rader, 4 rader. 
+Sen när allt är klart och man ahar skapat arenan, då tar vi bort cookies. 

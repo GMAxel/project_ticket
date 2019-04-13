@@ -217,7 +217,7 @@ function createRows()
 
     // det vi först vill veta, är hur många sektioner det är.
     // Sedan välja en sektion och se hur många rader som är valda i den sektionen. 
-
+    $countingRows = 0;
     for(let sectionIndex = 0; sectionIndex < nrOfSectionsArr.length; sectionIndex++) 
     {
 
@@ -229,6 +229,9 @@ function createRows()
 
         // Här hämtar vi hur många rader som ska skapas i containern
         let sectionRows  = document.getElementById('nr_of_rows_' + sectionIndex).value;
+        let parsedSectionRows = parseFloat(sectionRows);
+        $countingRows+= parsedSectionRows;
+
 
         for(let i = 1; i <= sectionRows; i++) {
             
@@ -261,9 +264,16 @@ function createRows()
                     new_row_container.appendChild(input);
 
                 sectionRowContainer.appendChild(new_row_container);
+
             });
         }
     }
+    let nrOfAllRows = document.createElement('input');
+    nrOfAllRows.type = "hidden";
+    nrOfAllRows.name = "sum_rows";
+
+    nrOfAllRows.value = $countingRows;
+    _('phase3').appendChild(nrOfAllRows);
 }
 
 function chooseNrOfRows() 
@@ -324,6 +334,8 @@ function chooseNrOfRows()
         button_get_rows.innerHTML = 'Välj antal rader';
         button_get_rows.id        = 'button_get_rows';
         button_get_rows.onclick   = createRows;
+        button_get_rows.type   = "button";
+
         _phase_3.appendChild(button_get_rows); 
 
     _phase_3.appendChild(br.cloneNode(true));
@@ -336,7 +348,7 @@ function chooseNrOfRows()
 
 }
 
-var arena_data;
+var arena_data, arena_data2;
 
 function processPhase1() 
 {
@@ -357,7 +369,14 @@ function processPhase1()
         postalarea: postarea_input,
         region: region_input
     };
-
+    arena_data2 = [
+        arena_input,
+        cap_input,
+        address_input,
+        postcode_input,
+        postarea_input,
+        region_input
+    ];
 
     // arena_data.arena = arena_input;
     // arena_data.capacity = cap_input;
@@ -372,7 +391,7 @@ function processPhase1()
     
     
     // Tar arena_data objektet och gör till en cookie sträng. 
-    document.cookie = "arena_data=" + JSON.stringify(arena_data); 
+    document.cookie = "arena_data=" + JSON.stringify(arena_data2); 
 
     
 
@@ -384,6 +403,7 @@ function processPhase1()
 }
 
 var section_data = [];
+var section_data_values = [];
 
 function processPhase2() 
 {
@@ -402,13 +422,20 @@ function processPhase2()
             entrance: entrance_input,
             seats: seats_input
         };
+        let section_values = [
+            section_input,
+            entrance_input,
+            seats_input
+        ];
 
         section_data.push(section);
+        section_data_values.push(section_values);
+
 
     }
 
     // Tar section_data objektet och gör till en cookie sträng. 
-    document.cookie = "section_data=" + JSON.stringify(section_data); 
+    document.cookie = "section_data=" + JSON.stringify(section_data_values); 
 
 
    
@@ -424,6 +451,8 @@ function processPhase2()
 
 
 var row_data = [];
+var row_data_values = [];
+
 
 function processPhase3() 
 {
@@ -450,8 +479,14 @@ function processPhase3()
                 rad: row_i + 1,
                 seats: row_seats.value
             };
+            row_values = [
+                sektion_i +1,
+                row_i + 1,
+                row_seats.value
+            ];
 
             row_data.push(row);
+            row_data_values.push(row_values);
         }
     }
 
@@ -463,7 +498,7 @@ function processPhase3()
     _("status").innerHTML = "Phase 3 of 3";
 
     // Tar section_data objektet och gör till en cookie sträng. 
-    document.cookie = "row_data=" + JSON.stringify(row_data); 
+    document.cookie = "row_data=" + JSON.stringify(row_data_values); 
 
     show_arena();
     show_rows();
@@ -588,4 +623,10 @@ function show_rows()
     console.dir(document.cookie);
     console.log(document.cookie);
 
+}
+
+function submitForm() {
+    _("multiphase").method = "post";
+	// _("multiphase").action = "../include/classes/admin5.php";
+	_("multiphase").submit();
 }

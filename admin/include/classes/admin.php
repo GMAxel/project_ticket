@@ -269,9 +269,9 @@ class Admin {
         $seats = (implode(",", $något));
 
         // HÄR
-        // $insertSql = ("INSERT INTO arenaSectionRowSeats (arenaSectionRowId, seat) VALUES $seats");
-        // $stmt = $this->_db->prepare($insertSql);
-        // $stmt->execute();
+        $insertSql = ("INSERT INTO arenaSectionRowSeats (arenaSectionRowId, seat) VALUES $seats");
+        $stmt = $this->_db->prepare($insertSql);
+        $stmt->execute();
 
 
 

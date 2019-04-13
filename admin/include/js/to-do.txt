@@ -139,3 +139,72 @@ En funktion som hämtar värdena från dessa inputs och lagrar de i en cookie.
 
 
 Sen när allt är klart och man ahar skapat arenan, då tar vi bort cookies. 
+
+
+
+
+Tanken: 
+Hämta all data med PHP-istället. 
+
+
+Kan vi när vi hämtar datan, pusha in inputData till many_inputDatas, 
+om vi gör detta så kommer vi ha lika många arrayer som sektioner,
+sen kan vi inserta varje sektion". 
+
+Så: 
+
+
+function insert_rows ($nrOfSections = 0, $last_arenaId = 0) 
+{
+    $many_inputData = [];
+    // columnNames innehåller alla kolumner.  
+    foreach($this->columnNames as $elem) 
+    {
+        if($this->table == 'arenaSections') 
+        {
+            if($elem == 'arenaId') 
+            {
+
+                echo "<br>Arenans Id är följande: $last_arenaId";
+                var_dump($last_arenaId);
+                $inputData[] = $last_arenaId;                   
+            }
+            if($elem != 'arenaId') 
+            {
+                for($i = 0;$i < $nrOfSections; $i++) 
+                {
+                    // looped_elem
+                    $looped_elem = $elem . '_' . $i;
+                    $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
+
+                    $many_inputData[i].push($inputData);
+                }
+            }
+        }
+    }
+
+    // och sen:
+    $section_id = [];
+    foreach($many_inputData as $one_row) {
+
+        $row_i = 0;
+        if($this->table == 'arenaSections') {
+            array_unshift($many_inputData[row_i], $last_arenaId);
+        }
+        elseif($this->table == 'arenaSectionRows') {
+            // oklart. 
+        }
+        $row_i++;
+
+        $i = 1;
+        foreach($one_row as $value) {
+            $stmt->bindValue($i, $value);
+            $i++;
+        }
+        
+        $stmt->execute();   
+        $section_id [] = $this->_db->lastInsertId();
+    }
+    return $section_id;
+
+}

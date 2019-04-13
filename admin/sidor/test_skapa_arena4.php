@@ -4,6 +4,8 @@
     // require_once '../include/classes/admin.php';
     // require_once '../include/classes/admin4.php';
         require_once '../include/classes/admin5.php';
+        require_once '../include/classes/arena.php';
+
 
 
     
@@ -49,8 +51,8 @@
         <progress id="progressBar" value="0" max="100"></progress>
         <h3 id="status"> Fas 1 </h3>
 
-        <form id="multiphase" onsubmit="return false"> 
-
+        <form method="post" name="multiphase" id="multiphase"> 
+        <!-- onsubmit="return false -->
             <div id="phase1">
                 <div id="phase_1_input-container"> 
                 </div>
@@ -60,16 +62,16 @@
                     Continue
                 </button><br>
 
-                <button id="btnSetCookie"> Set cookie </button>
-                <button id="btnSetCookieArray"> Set Cookie array </button>
-                <button id="btnShowCookies"> Show Cookies</button>
-                <button id="btnDeleteCookie"> Delete Cookie (foo) </button>
+                <!-- <button  id="btnSetCookie"> Set cookie </button>
+                <button id="btnSetCookieArray"> Set Cookie array </button> -->
+                <!-- <button id="btnShowCookies"> Show Cookies</button> -->
+                <!-- <button id="btnDeleteCookie"> Delete Cookie (foo) </button> -->
 
             </div>
 
             <div id="phase2">
-                <input type="number" id="nrOfSections" placeholder="Antal Sektioner"><br>
-                <button name="test_getSections" onclick="createSections()">
+                <input type="number" id="nrOfSections" name="nrOfSections" placeholder="Antal Sektioner"><br>
+                <button type="button" name="test_getSections" onclick="createSections()">
                     Create sections 
                 </button>
                 <div id="phase_2_input-container"> 
@@ -90,7 +92,7 @@
                 <div id="phase3_input_container">
                 </div>
 
-                <button onclick="processPhase3()">Continue</button> 
+                <button type="button" onclick="processPhase3()">Continue</button> 
 
 
             </div>
@@ -115,12 +117,44 @@
 
                 </table>              
 
-                <button onclick="submitForm()"> Skapa Arena </button>
+                <?php if(isset($_POST['skapa_arena'])){
+                    $user = new Admin_test();
+                    $columns = $user->test_getColumnNames('arenas');
+                    $arenaId  = $user->test_createUser2();
+
+                    echo "<br>ARENANS ID= $arenaId<br><br><br>";
+                    print_r($user->columnNames);
+                    print_r($user->table);
+
+                    
+
+                    $arena = new Arena();
+                    $nrOfSections = $_POST['nrOfSections'];
+                    $arena->test_getColumnNames('arenaSections');
+                    $section_id_arr = $arena->insert_rows($nrOfSections, $arenaId);
+                    
+        
+                    $nrOfRows = $_POST['sum_rows'];
+                    $arena->test_getColumnNames('arenaSectionRows');
+                    $arena->insert_many_rows($section_id_arr, $nrOfRows);
+
+                    print_r($user->columnNames);
+                    print_r($user->table);
+
+
+                } ?>
+                <!-- onclick="submitForm() -->
+                <input type="submit" name="skapa_arena" value="php_skap Arena">
             </div>
 
         <form>        
     </main>
 </div>
+
+<?php if(isset($_POST['skapa_arena'])){
+    echo "hejsan";
+}
+    ?>
 
 
 

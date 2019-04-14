@@ -134,9 +134,11 @@
                     $section_id_arr = $arena->insert_rows($nrOfSections, $arenaId);
                     
         
-                    $nrOfRows = $_POST['sum_rows'];
+                    $nrOfRows = (int)$_POST['sum_rows'];
+                  
+
                     $arena->test_getColumnNames('arenaSectionRows');
-                    $arena->insert_many_rows($section_id_arr, $nrOfRows);
+                    $arena->insert_many_rows_2($section_id_arr);
 
                     print_r($user->columnNames);
                     print_r($user->table);

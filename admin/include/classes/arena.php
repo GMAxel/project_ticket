@@ -75,41 +75,19 @@ class Arena {
 
         $many_rows = new stdClass();
         // columnNames innehåller alla kolumner. Alltså, för varje kolumnnamn...
-        // foreach($this->columnNames as $elem) {
-        //     if($elem != 'arenaSectionId') {
-        //         // Här hämtar vi inputvärden, och lägger de separat.
-        //         // Värden med namn_0 hamnar i many_inputData som 0-index.
-        //         // Värden med namn 1 hamnar med 1 som index. osv. 
-        //         for($i = 0; $i < $nrOfRows; $i++) {
-
-        //             $looped_elem = $elem . '_' . $i;
-  
-        //             $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
-
-
-        //             $many_inputData->$i [] = $inputData;                    
-        //         }
-        //     }
-        // }
-    }
-
-    function insert_rows ($nrOfSections = 0, $last_arenaId = 0) 
-    {
-        $many_inputData = new stdClass();
-        // columnNames innehåller alla kolumner. Alltså, för varje kolumnnamn...
         foreach($this->columnNames as $elem) {
-            if($elem != 'arenaId') {
+            if($elem != 'arenaSectionId') {
                 // Här hämtar vi inputvärden, och lägger de separat.
                 // Värden med namn_0 hamnar i many_inputData som 0-index.
                 // Värden med namn 1 hamnar med 1 som index. osv. 
-                for($i = 0; $i < $nrOfSections; $i++) {
+                for($i = 0; $i < $nrOfRows; $i++) {
 
                     $looped_elem = $elem . '_' . $i;
   
                     $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
 
 
-                    $many_inputData->$i [] = $inputData;                    
+                    $many_rows->$i [] = $inputData;                    
                 }
             }
         }
@@ -117,11 +95,11 @@ class Arena {
 
         echo "<br><br> <hr>Many input data arena: ";
         echo "<pre>";
-        print_r($many_inputData);
+        print_r($many_rows);
         echo "</pre><hr>";
 
         
-        foreach($many_inputData as $one_section) {
+        foreach($many_rows as $one_section) {
             foreach($one_section as $val) {
                 echo "<hr> VALUES: $val <hr>";
             }
@@ -148,9 +126,8 @@ class Arena {
         echo "<hr> Sql: $sql <hr>";
 
      
-        $section_id = [];
 
-        foreach($many_inputData as $one_section) {
+        foreach($many_rows as $one_section) {
             $i = 1;
             echo "<hr> arena Id: $last_arenaId <hr>";
             $stmt->bindValue($i, $last_arenaId);
@@ -162,7 +139,85 @@ class Arena {
                 $stmt->bindValue($i, $value);
                 
             }
-            echo "<hr> Nu händer det </hr>";
+            // echo "<hr> Nu händer det </hr>";
+            $stmt->execute();    
+            if($this->table == 'arenaSections') {
+            
+            }
+           
+        }
+    }
+    
+
+    function insert_rows ($nrOfSections = 0, $last_arenaId = 0) 
+    {
+        $many_inputData = new stdClass();
+        // columnNames innehåller alla kolumner. Alltså, för varje kolumnnamn...
+        foreach($this->columnNames as $elem) {
+            if($elem != 'arenaId') {
+                
+                for($i = 0; $i < $nrOfSections; $i++) {
+
+                    $looped_elem = $elem . '_' . $i;
+  
+                    $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
+
+
+                    $many_inputData->$i [] = $inputData;                    
+                }
+            }
+        }
+      
+
+        // echo "<br><br> <hr>Many input data arena: ";
+        // echo "<pre>";
+        // print_r($many_inputData);
+        // echo "</pre><hr>";
+
+
+        
+        foreach($many_inputData as $one_section) {
+            foreach($one_section as $val) {
+                // echo "<hr> VALUES: $val <hr>";
+            }
+        }
+
+        
+  
+
+        // Här gör vi om columnNames till en sträng så vi kan använda den i $sql. 
+        $columnNames = implode(', ', $this->columnNames);
+
+        // echo "<hr> Kolumner att fylla: $columnNames <hr>";
+
+        // här skapar vi en string som har lika många ? som antal värden vi hämtat. 
+        $placeholders = rtrim(str_repeat('?, ', count($this->columnNames)), ', ');
+
+        // echo "<hr> placeholders att fylla: $placeholders <hr>";
+
+
+        // här gör skapar vi en querystring som innehåller kolumnerna från db, samt lika många placeholders.
+        $sql = "INSERT INTO $this->table ($columnNames) VALUES ($placeholders)";
+        $stmt= $this->_db->prepare($sql);
+
+        // echo "<hr> Sql: $sql <hr>";
+
+     
+        $section_id = [];
+
+        foreach($many_inputData as $one_section) {
+            $i = 1;
+            // echo "<hr> arena Id: $last_arenaId <hr>";
+            $stmt->bindValue($i, $last_arenaId);
+
+            foreach($one_section as $value) {
+                $i++;
+                // echo "<hr> Värde $i : $value <hr>";
+
+                $stmt->bindValue($i, $value);
+                
+            }
+            // echo "<hr> Nu händer det </hr>";
             $stmt->execute();    
             
             $section_id [] = $this->_db->lastInsertId();   
@@ -170,9 +225,139 @@ class Arena {
            
         }
         
-        echo "<hr>Sektion id <pre>";
-            print_r($section_id);
-            echo "</pre><hr>";
+        // echo "<hr>Sektion id <pre>";
+        //     print_r($section_id);
+        //     echo "</pre><hr>";
             return $section_id;
     }
+    
+    function insert_many_rows_2($section_id_arr) {
+
+        echo "<hr>Sektion ids <pre>";
+        print_r($section_id_arr);
+        echo "</pre><hr>";
+
+       
+        // för varje sektion id vill vi hämta hur många rader som skapades i den sektionen. 
+
+
+                // för varje kolumn i databasen.
+                // alltså: arenaSectionId, row_number, nrOfSeats. 
+
+                // vi vill loopa igenom att kolumner i db.
+                // vi vill loopa igenom alla sektion ids. 
+                // vi vill loopa igenom alla rader som ska skapas. 
+
+        $many_rows = new stdClass();
+        $index = 0;
+        foreach($section_id_arr as $section_id) {
+            // section_id_arr innehåller alla sektioner som skapats. 
+            // Här skickar vi in section_id som en array. 
+            // $many_rows->$section_id [] = $section_id; kanske även ska skicka in värdetr?
+
+            $many_rows->$section_id = new stdClass();
+
+           
+            
+
+            foreach($this->columnNames as $elem) {
+                // radrnr + nrOfSeats + section_id(?)
+                if($elem != 'arenaSectionId') {
+                    $nrOfRowsVar = 'nr_of_rows_' . $index;
+                    $nrOfRows = filter_input(INPUT_POST, $nrOfRowsVar, FILTER_SANITIZE_MAGIC_QUOTES);
+
+
+
+                    for($i = 0; $i < $nrOfRows; $i++) {
+
+                        if(!$many_rows->$section_id->$i) {
+                            $many_rows->$section_id->$i [] = $section_id;  
+
+                        }  
+                        $looped_elem = $elem . '_' . $i . '_' . $index;
+
+                        $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
+
+                        $many_rows->$section_id->$i [] = $inputData;  
+                          
+                    }
+                    
+                }
+            }
+
+            $index++;
+        }
+       
+
+        
+        echo "<br><br> <hr>Many rows: ";
+        echo "<pre>";
+        print_r($many_rows);
+        echo "</pre><hr>";
+
+    
+
+
+
+        // Här gör vi om columnNames till en sträng så vi kan använda den i $sql. 
+        $columnNames = implode(', ', $this->columnNames);
+
+        echo "<hr> Kolumner att fylla: $columnNames <hr>";
+
+        // här skapar vi en string som har lika många ? som antal värden vi hämtat. 
+        $placeholders = rtrim(str_repeat('?, ', count($this->columnNames)), ', ');
+
+        echo "<hr> placeholders att fylla: $placeholders <hr>";
+
+
+        // här gör skapar vi en querystring som innehåller kolumnerna från db, samt lika många placeholders.
+        $sql = "INSERT INTO $this->table ($columnNames) VALUES ($placeholders)";
+        $stmt= $this->_db->prepare($sql);
+
+        echo "<hr> Sql: $sql <hr>";
+
+
+        foreach($many_rows as $section) {
+            echo "<pre>";
+            print_r($section);
+            echo "</pre><hr>";
+            
+
+            foreach($section as $one_row) {
+                echo "<pre>";
+                print_r($one_row);
+                echo "</pre><hr>";
+                $i = 1;
+                foreach($one_row as $value) {
+                    echo "<pre>";
+                    print_r($value);
+                    echo "</pre><hr>";
+
+                    
+                    echo "<hr> Värde $i : $value <hr>";
+
+                    $stmt->bindValue($i, $value);
+                    $i++;
+                }
+
+                echo "<hr> Nu händer det </hr>";
+                $stmt->execute();        
+            }
+           
+            
+        }
+    }
 }
+
+
+
+
+
+/**
+ * Alltså: 
+ * För varje sektion, vill vi:
+ * 
+ * För varje kolumnnamn vill vi:
+ *  - Hämta antalet rader som ska skapas för kolumnen, 
+ */
+

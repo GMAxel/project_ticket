@@ -131,7 +131,7 @@ var input_choose_rows_options =
 [
     {
         type: 'hidden',
-        name: 'hidden_row_number_',
+        name: 'row_number_',
         id: 'hidden_row_number_',
     },
     {
@@ -217,7 +217,8 @@ function createRows()
 
     // det vi först vill veta, är hur många sektioner det är.
     // Sedan välja en sektion och se hur många rader som är valda i den sektionen. 
-    $countingRows = 0;
+    $countingRows = [];
+    let class_index = 0;
     for(let sectionIndex = 0; sectionIndex < nrOfSectionsArr.length; sectionIndex++) 
     {
 
@@ -230,12 +231,12 @@ function createRows()
         // Här hämtar vi hur många rader som ska skapas i containern
         let sectionRows  = document.getElementById('nr_of_rows_' + sectionIndex).value;
         let parsedSectionRows = parseFloat(sectionRows);
-        $countingRows+= parsedSectionRows;
+        $countingRows.push(parsedSectionRows);
 
 
-        for(let i = 1; i <= sectionRows; i++) {
+        for(let i = 0; i < sectionRows; i++) {
             
-            input_rows_options.forEach(function(element) {   
+            input_choose_rows_options.forEach(function(element) {   
                 let new_row_container = document.createElement('div');
                     new_row_container.className = 'p3_rowContainer';    
                       
@@ -253,7 +254,7 @@ function createRows()
                 }
 
                     input.type = element.type;
-                    input.name = element.name + i;
+                    input.name = element.name + i +  '_' + class_index;
                     input.id = element.id + i;
                     input.placeholder = element.placeholder;
 
@@ -267,6 +268,7 @@ function createRows()
 
             });
         }
+        class_index++;
     }
     let nrOfAllRows = document.createElement('input');
     nrOfAllRows.type = "hidden";
@@ -307,7 +309,7 @@ function chooseNrOfRows()
 
         p3_section_container.appendChild(h4);
 
-        input_section_rows_option.forEach(function(element) 
+        obsolete_input_section_rows_option.forEach(function(element) 
         {   
             let input = document.createElement('input');
 

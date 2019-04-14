@@ -208,3 +208,40 @@ function insert_rows ($nrOfSections = 0, $last_arenaId = 0)
     return $section_id;
 
 }
+
+
+
+
+Hur får jag in sektionernas Id till raderna? 
+Ska jag istället hämta sektionernas antal rader, och sedan skapa rader med den sektionen?
+Okej, om vi skulle göra så, hur skulle vi hämta sektionen? 
+
+för varje sektion - sen loopar vi igenom antalet rader. 
+
+Finns det någon anledning till att loopa igenom sektions id? 
+
+
+$nr_of_rows_i = 0;
+// för varje sektion id vill vi hämta hur många rader som skapades i den sektionen. 
+foreach(sektion_id_arr as sektionId) {
+
+        // för varje kolumn i databasen.
+        // alltså: arenaSectionId, row_number, nrOfSeats. 
+        foreach($this->columnNames as $elem) {
+        
+        $nrOfRowsVar = 'nr_of_rows_' . $nr_of_rows_i;
+        $nrOfRows = filter_input(INPUT_POST, $nrOfRowsVar, FILTER_SANITIZE_MAGIC_QUOTES);
+
+
+        for($i = 0; $i < nrOfRows; i++) {
+            $looped_elem = $elem . '_' . $i;
+
+            $inputData = filter_input(INPUT_POST, $looped_elem, FILTER_SANITIZE_MAGIC_QUOTES);
+
+
+            $many_rows->$i [] = $inputData;         
+        }
+
+    $nr_of_rows_i++;
+    }
+}

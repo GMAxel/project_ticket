@@ -13,7 +13,7 @@ var all_arena_sections =  [
 ];
 
 
-var section_input_options = 
+var obsolete_section_input_options = 
 [
     {
         type: 'text',
@@ -38,7 +38,7 @@ var section_input_options =
     }
 ]; 
 
-var input_rows_options = 
+var obsolete_input_rows_options = 
 [
     {
         type: 'hidden',
@@ -55,7 +55,7 @@ var input_rows_options =
     }
 ]; 
 
-var input_section_rows_option = [
+var obsolete_input_section_rows_option = [
     {
         type: 'hidden',
         placeholder: '',
@@ -87,7 +87,7 @@ function createSections() {
 
 
         // Skapar en input för varje 'item' i sections_inpu
-        section_input_options.forEach(function(element) 
+        obsolete_section_input_options.forEach(function(element) 
         {   
             let input = document.createElement('input');
                 input.type = element.type;
@@ -109,7 +109,7 @@ function createSections() {
 
 function createSection() 
 {
-    section_input_options.forEach(function(element) {   
+    obsolete_section_input_options.forEach(function(element) {   
         let container = document.createElement('div');
             container.className = 'p2_sectionsContainer';    
         document.getElementById('phase2').appendChild(container);
@@ -128,10 +128,8 @@ function createSection()
 function createRows() 
 {
     // 
-    let nrOfRowsContainer = document.getElementsByClassName('p3_sectionContainer');
     let nrOfRows = document.getElementsByClassName('nr_of_rows');
 
-    let nrOfRowsContainerArr = Array.from(nrOfRowsContainer);
     let nrOfRowsArr = Array.from(nrOfRows);
 
     // det vi först vill veta, är hur många sektioner det är. Sedan välja en sektion och se hur många rader som är valda i den sektionen. 
@@ -145,36 +143,30 @@ function createRows()
         
 
 
-        class_index++;
         // Här hämtar vi hur många rader som ska skapas i containern
         let sectionRows  = document.getElementById('nr_of_rows_' + sectionIndex).value;
 
         for(let i = 1; i <= sectionRows; i++) {
             
-            input_rows_options.forEach(function(element) {   
+            obsolete_input_rows_options.forEach(function(element) {   
                 let new_row_container = document.createElement('div');
-                    new_row_container.className = 'p3_rowContainer';    
-                      
-                
+                new_row_container.className = 'p3_rowContainer';    
+
                 let input = document.createElement('input');
 
-
                 if(element.type != 'hidden') {
-                let span = document.createElement('span');
+                    let span = document.createElement('span');
                     span.innerHTML = 'Rad ' + i + ' ';
                     span.id = 'Rad_' + i;                    
                     new_row_container.appendChild(span);
                     input.className = element.className + class_index;
-
                 }
 
-              
-
-            
-                    input.type = element.type;
-                    input.name = element.name + i;
-                    input.id = element.id + i;
-                    input.placeholder = element.placeholder;
+                input.type = element.type;
+                input.name = element.name + i + '_' + class_index;
+                console.log(input.name);
+                input.id = element.id + i;
+                input.placeholder = element.placeholder;
 
                 if(element.type == 'hidden') {
                     input.value =  i;
@@ -185,6 +177,8 @@ function createRows()
                 sectionRowContainer.appendChild(new_row_container);
             });
         }
+        class_index++;
+
     }
 
  
@@ -313,7 +307,7 @@ function processPhase2()
 
             p3_section_container.appendChild(h4);
 
-            input_section_rows_option.forEach(function(element) 
+            obsolete_input_section_rows_option.forEach(function(element) 
         {   
             let input = document.createElement('input');
 

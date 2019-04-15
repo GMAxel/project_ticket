@@ -428,10 +428,11 @@ class Admin {
             }
             else if ($col[0] == 'arenaId') {
                 $columns [] = $col[0];
-                $sqlArenas = "SELECT id, name FROM arenas";
+                $sqlArenas = "SELECT id, arenaName FROM arenas";
                 $getArenas = $this->_db->prepare($sqlArenas);
                 $getArenas->execute();
                 $arenas = $getArenas->fetchAll(PDO::FETCH_NUM);
+
 
 
                 echo "<div class=''>
@@ -523,7 +524,10 @@ class Admin {
             $stmt->bindValue($i, $value);
             $i++;
         }
-        $stmt->execute();                
+        $stmt->execute();  
+        if($table == 'events') {
+            return $this->_db->lastInsertId();
+        }              
     }
 
     public function login($table) {
@@ -561,6 +565,27 @@ class Admin {
         return $this->is_logged_in; 
     }
 
+    function copy_table($event_id) {
+        $sql = "INSERT INTO seatStatus (eventid, arenaSectionRowSeatId)
+        SELECT e.id, seats.id 
+        FROM events AS e
+
+        JOIN arenas AS a ON e.ArenaId = a.id
+        JOIN arenaSections AS sections ON sections.arenaId = a.id
+        JOIN arenaSectionRows AS a_rows ON a_rows.arenaSectionId = sections.id
+        JOIN arenaSectionRowSeats AS seats ON seats.arenaSectionRowId = a_rows.id
+
+        WHERE e.id = $event_id;
+        
+        ";
+
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute(); 
+
+    }
+
     
 
 }
+
+

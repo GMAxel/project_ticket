@@ -55,11 +55,15 @@
     $user = new Admin();
     $columns = $user->createInputs('events');
     
-    if (isset($_GET['createArena'])) {
-        $user->createAccount('events', $columns);
+    if (isset($_GET['createEvent'])) {
+        $event_id = $user->createAccount('events', $columns);
+        echo $event_id;
+        $user->copy_table($event_id);
+
     }
     ?>
-        <input type="submit" name="createArena" value="Skapa Event">
+        <input type="submit" name="createEvent" value="Skapa Event">
+
     </form>
 
 </main>

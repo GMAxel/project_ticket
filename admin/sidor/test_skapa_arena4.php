@@ -128,6 +128,7 @@
 
                     
 
+                    // här skapar vi sektioner. 
                     $arena = new Arena();
                     $nrOfSections = $_POST['nrOfSections'];
                     $arena->test_getColumnNames('arenaSections');
@@ -137,8 +138,12 @@
                     $nrOfRows = (int)$_POST['sum_rows'];
                   
 
+                    // Här skapar vi rader
                     $arena->test_getColumnNames('arenaSectionRows');
                     $arena->insert_many_rows_2($section_id_arr);
+
+                    // Här skapar vi seats
+                    $arena->insert_seats($arenaId);
 
                     print_r($user->columnNames);
                     print_r($user->table);
@@ -149,7 +154,8 @@
                 <input type="submit" name="skapa_arena" value="php_skap Arena">
             </div>
 
-        <form>        
+        </form>        
+        
     </main>
 </div>
 

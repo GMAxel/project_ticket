@@ -142,9 +142,8 @@ class Arena {
             // echo "<hr> Nu händer det </hr>";
             $stmt->execute();    
             if($this->table == 'arenaSections') {
-            
             }
-           
+
         }
     }
     
@@ -347,6 +346,69 @@ class Arena {
             
         }
     }
+
+    function prnt($item) {
+        echo "<pre>";
+        print_r($item);
+        echo "</pre>";
+    }
+
+
+        //  Kalla på funktionen som hämtar kolumner med 'arena' som argument, sen: 
+    function insert_seats($arenaId) {
+
+
+        // Här hämtar vi antal platser på varje rad som tillhör angiven arena. 
+        $sql_get = "SELECT a_rows.id, a_rows.row_nrOfSeats FROM arenaSectionRows as a_rows
+                JOIN arenaSections AS sections ON sections.id = a_rows.arenaSectionId
+                JOIN arenas AS a ON a.id = sections.arenaId
+                WHERE a.id = $arenaId;";
+
+        $stmt_get = $this->_db->prepare($sql_get);
+        $stmt_get->execute();
+        $result = $stmt_get->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+        // Här skickar vi in många värden. 
+
+
+        echo "<hr>Result Count = " . count($result) . "<hr>";
+        $seats_arr = [];
+        foreach($result as $section) {
+
+            // echo " <hr> Sektion : " . $section['arenaSectionId'];
+            // echo " Antal säten: " . $section['row_nrOfSeats'];
+            // echo "<br><hr>  ";
+            $sectionId = $section['id'];
+        
+            for($i = 1; $i <= $section['row_nrOfSeats']; $i++) {
+                echo "<hr>Rad: " . $section['id'] . "<br>";
+                echo "Plats: " . $i . "<hr>";
+                $seats_arr [] = "($sectionId, $i)";
+
+
+
+            }
+
+
+            // for($i = 0; $i < count)
+
+            
+        }
+        $this->prnt($seats_arr);
+
+        $seats_string = implode(',', $seats_arr);
+
+        echo $seats_string;
+
+        $sql_insert = ("INSERT INTO arenaSectionRowSeats (arenaSectionRowId, seat) 
+        VALUES $seats_string");
+        $stmt_insert = $this->_db->prepare($sql_insert);
+        $stmt_insert->execute();
+
+    }
+
 }
 
 
@@ -360,4 +422,8 @@ class Arena {
  * För varje kolumnnamn vill vi:
  *  - Hämta antalet rader som ska skapas för kolumnen, 
  */
+
+
+
+
 

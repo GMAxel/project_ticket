@@ -19,6 +19,10 @@ body {
     font-size:1.4em;
 }
 
+[hidden] {
+    display: none;
+}
+
 
 
 .gridContainer {

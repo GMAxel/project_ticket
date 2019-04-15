@@ -245,3 +245,98 @@ foreach(sektion_id_arr as sektionId) {
     $nr_of_rows_i++;
     }
 }
+
+
+
+
+Koppla samman JS med PHP.
+Vanligaste sättet är ett API-svar.
+
+Lägga till varor i en varukorg.
+
+Generera event med PHP, sätt eventlyssnare på en klass(?).
+Vi hämtar om man klickar på elementet med klassnamn.
+
+
+Tanke:
+
+Vi kan generera kod från PHP där vi ger alla tickets samma klassnamn. 
+Vi ger de ett Id som är ett loopat i, så alla har egna värden.
+
+Sedan hämtar vi elementen med klassnamnet, och loopar igenom varje element
+med i, så sätter vi alltså event lyssnare på alla element. 
+
+då kan vi välja ett specifikt element. 
+
+
+JSON.parse för att konvertera datan från PHP till JSON. 
+
+JSON.parse skriver vi i javascriptetobjektet. 
+
+Hämta biljetter 
+
+Hämta data via php, gör en JS cookie, sen tillbaka till php. 
+
+Php echo array med datan som är i. 
+
+Lägger till produkter, funkar. 
+
+
+
+
+skapat en tom array. 
+
+
+
+En JSON variabel med php
+
+
+Googla:
+
+How to parse from PHP to JS.
+How to prase from JS to PHP. 
+
+JSON from PHP to JS.
+JSON from JS to PHP.
+
+
+Omvandlar PHP-data till JSON = JSON_encode. 
+JSON.encode
+
+Sedan kan vi sätta det som värde på en span, eller input hidden, eler liknande, så vi
+kan få tag på texten med JS. 
+
+Kan se hur det ser ut med hjälp av textarea. 
+<textarea id="" style="display: none" ><?php echo $json_data ?> </textarea>
+
+
+
+Hämta sedan med gjälp av Id. 
+
+json_encode()
+
+Från PHP till JSON = JSON_encode.
+
+FRÅN JSON TILL JS OBJEKT = JSON.parse(sträng)
+
+
+Från JS objekt till JSON = JSON.stringify(data); 
+
+Cookies:
+
+
+Så vi hämtar rader med PHP, gör om de till JSON (JSON_encode) och lägger 
+in det som en textarea. 
+
+
+Sedan tar vi emot med JS, gör om strängen till ett objekt (JSON.parse)
+
+Sedan skapar vi en cookie som heter data och innehåller biljetterna. 
+Vi gör om data så att det blir till JSON, alltså:
+document.cookie = "data =" + JSON.stringify(data);
+
+Sedan hämtar vi cookien i PHP, och skriver JSON_decode()
+
+
+
+control d

@@ -19,7 +19,6 @@
 
 
     <script src="../include/js/cart.js" async></script>
-    <script src="../include/js/startsida.js" async></script>
 
 </head>
 <body>
@@ -36,23 +35,39 @@
         require_once '../include/classes/customer.php';
         require_once '../include/classes/events.php';
 
+
         ?>
 
-        <main class="gridItem">  
-            <!-- Event med flest köpa biljetter -->
-            <h1>Populära Event</h1>
+        <main class="gridItem">
+            <h1>Thank you for your purchase!</h1>
 
-            <hr>
+            <?php
+            // Hämta från cookien
+            $ids = explode(",", $_COOKIE["cart"]);
             
-            <div class="flexContainerStartsida">
-            <?php 
-                $event = new Events;
-                $event->show_events_json();
+            $purchase_service = new Purchaser;
+
+            function is_sold() {
+                return false; // TODO
+            }
+
+            // Se till att vi inte köper dubletter
+            $purchasable_tickets = array_filter($ids, function($id) {
+                return !$purchase_service->is_sold($id);
+            });
+
+            print_r($purchasable_tickets);
+
+            // Registrera köp i databasen
+            $purchase_service.register_purchase($purchasable_tickets);
+
+            // Töm cart cookien
             ?>
-            <div id="cart_container"></div>
-            </div>
-            <hr>
+            </table>
         </main>
+        
     </div>
+
+
 </body>
 </html>

@@ -1,10 +1,8 @@
-
-
 <?php
     session_start();
     require_once '../include/classes/customer.php';
 
-    if (isset($_GET['login'])) {
+    if (isset($_POST['login'])) {
         $user = new Customers();
 
         if($user->login('customers')) {
@@ -17,7 +15,7 @@
 
     }
 
-    if(isset($_GET['logOut'])) {
+    if(isset($_POST['logOut'])) {
         $_SESSION = [];
         header('Location: startsida.php');
     }

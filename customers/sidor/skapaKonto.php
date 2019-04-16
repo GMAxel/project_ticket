@@ -1,4 +1,5 @@
 <?php
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,8 @@
             $columns = $user->createInputs('customers');
             
             if(isset($_GET['createAcc'])) {
-                $user->createAccount('customers', $columns);
+                if($user->createAccount('customers', $columns)) {
+                }
 
             }
             ?>

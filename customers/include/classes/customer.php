@@ -105,32 +105,32 @@ class Customers
             $stmt->bindValue($i, $value);
             $i++;
         }
-        $stmt->execute();                
+        $stmt->execute();     
     }
 
     
 
     public function login($table) {
-        echo "???";
 
-        echo $table;
-        
-        echo "ja";
         $user = $_POST['user'];
-        $pass = $_POST['pass'];
 
-        echo $user;
-        echo $pass;
+      
+        $pass = $_POST['pass'];
+     
+       
         // Hämta lösenordet koppålat till användarnamnet. 
 
         $sql = "SELECT password, id 
                 FROM $table 
-                WHERE username = ':user'
-                AND exist = 1";
+                WHERE username = ?";
+                
         $stmt = $this->_db->prepare($sql);
-        $stmt->execute([':user' => $user]); 
+        $stmt->bindValue(1, $user);
+        $stmt->execute();
         // Fetchcolumn hämtar ett värde istället för en array i en array. 
         $result = $stmt->fetch(PDO::FETCH_NUM);
+
+        var_dump($result);
 
         $hash = $result[0];
         $customerId = $result[1];
@@ -149,6 +149,8 @@ class Customers
                 echo "Sessionvärde: $key : $value <br>";
             }
         }
+
+
         return $this->is_logged_in; 
     }
 

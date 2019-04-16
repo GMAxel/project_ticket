@@ -124,7 +124,7 @@ class Purchaser {
         $stmt = $this->_db->prepare($sql_select);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        print_r($result);
         // Här skapar jag headers för tabellen. 
         echo "<tr>";
         foreach($result[0] as $key => $value) {

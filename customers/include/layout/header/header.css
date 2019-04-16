@@ -95,6 +95,9 @@
             border:1px solid black;
             margin-bottom:8px;
         }
+        .headerFlexContainer .headerFlexItem2  .logInContainer .logInInputs input[type="submit"] {
+            width:40%;
+        }
          
          
         

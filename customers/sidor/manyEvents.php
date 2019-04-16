@@ -1,10 +1,11 @@
-
+<?php
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Alla events Customers</title>
+    <title>Startsida Customers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/header/header.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/nav/nav.css">
@@ -19,8 +20,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/parentgrid.css">
 
 
+    <script src="../include/js/cart.js" async></script>
+    <script src="../include/js/startsida.js" async></script>
 
-    <script src="main.js"></script>
 </head>
 <body>
     <div class="gridContainer">
@@ -34,35 +36,25 @@
         require_once '../include/layout/logo/logo.php';
 
         require_once '../include/classes/customer.php';
-
+        require_once '../include/classes/events.php';
 
         ?>
-        <main class="gridItem">  
-            <h1>Biljettsida</h1>
 
-            Eventtyp
-            <select name="eventType"> 
-                <option value="all">-</option>
-                <option value="Fotboll">Fotboll</option>
-                <option value="Konsert">Konsert</option>    
-            </select>
-            Region
-            <select name="region"> 
-                <option value="all">-</option>
-                <option value="stockholm">Stockholm</option>
-                <option value="malmö">Malmö</option>    
-            </select>
+        <main class="gridItem">  
+            <!-- Event med flest köpa biljetter -->
+            <h1>Populära Event</h1>
+
+            <hr>
             
             <div class="flexContainerStartsida">
-                <h2><a href="#"> AIK-DIF (DATUM) </a></h2>
-                <!-- Skriv ut event som är inom 2 månader? -->
-                <!-- Datum etc skrivs ut på eventet.  -->
-                <h2><a href="#"> DIF-AIK (DATUM) </a></h2>
-                <h2> <a href="#">HIF-AIK (DATUM) </a></h2>
+            <?php 
+                $event = new Events;
+                $event->show_events_json();
+            ?>
+            <div id="cart_container"></div>
             </div>
+            <hr>
         </main>
-        
     </div>
-
 </body>
 </html>

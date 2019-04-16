@@ -54,9 +54,6 @@
             
             <form>
                 <div id="event_container"></div>
-                <input type="submit" name="displayRows" 
-                value="Visa Raderna" onclick="display_rows()">
-                
             </form>
 
                 <?php
@@ -78,6 +75,7 @@
     </div>
 
     <script>
+        // emd denna kod visar  vi upp alla biljetter 
         function _($elementId) {
             return document.getElementById($elementId);
         }

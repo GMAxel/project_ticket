@@ -382,23 +382,6 @@ function processPhase1()
         region_input
     ];
 
-    // arena_data.arena = arena_input;
-    // arena_data.capacity = cap_input;
-    // arena_data.address = address_input;
-    // arena_data.postalcode = postcode_input;
-    // arena_data.postalarea = postarea_input;
-    // arena_data.region = region_input;
-
-
-
-
-    
-    
-    // Tar arena_data objektet och gör till en cookie sträng. 
-    document.cookie = "arena_data=" + JSON.stringify(arena_data2); 
-
-    
-
     _("phase1").style.display = "none";
     _("phase2").style.display = "block";
     _("progressBar").value = 33;
@@ -431,19 +414,9 @@ function processPhase2()
             entrance_input,
             seats_input
         ];
-
         section_data.push(section);
         section_data_values.push(section_values);
-
-
     }
-
-    // Tar section_data objektet och gör till en cookie sträng. 
-    document.cookie = "section_data=" + JSON.stringify(section_data_values); 
-
-
-   
-
 
     _("phase2").style.display = "none";
     _("phase3").style.display = "block";
@@ -460,22 +433,18 @@ var row_data_values = [];
 
 function processPhase3() 
 {
-
-    // Först ska ska vi hämta värden.
-
-    // Hämta Alla sektioner från fas 3.
+    // Get all sections from Phase3
     let p3_sections = document.getElementsByClassName('p3_sectionContainer');
     let p3_sections_arr = Array.from(p3_sections);
+
 
     for(let sektion_i = 0; sektion_i < p3_sections_arr.length; sektion_i++) 
     {
         let p3_section_rows = document.getElementsByClassName('row_sektion_'+ sektion_i);
         let p3_section_rows_arr = Array.from(p3_section_rows);
 
-        // En loop per rad i sektion. 
         for(let row_i = 0; row_i < p3_section_rows_arr.length; row_i++) 
         {
-
             let row_seats = p3_section_rows_arr[row_i];
 
             row = {
@@ -496,34 +465,28 @@ function processPhase3()
 
     _("phase3").style.display = "none";
     _("show_all_data").style.display = "block";
-
-
     _("progressBar").value = 100;
     _("status").innerHTML = "Phase 3 of 3";
 
-    // Tar section_data objektet och gör till en cookie sträng. 
-    document.cookie = "row_data=" + JSON.stringify(row_data_values); 
 
     show_arena();
     show_rows();
-
     show_sections();
 
 }
 
 function show_arena() 
 {
-    // tabellen
+    // Table
     let showArena = _("show_arena_table");
-
     // Header Raden. 
     let header_row = document.createElement('tr');
-    // Sätter fast header raden på tabellen. 
+    // Appends header row on table
     showArena.appendChild(header_row);   
-    // Hämtar nycklarna.
+    // Gets keys
     let arena_keys = Object.keys(arena_data);
 
-    // Dataraden.  
+    // Dataraden.
     let data_row = document.createElement('tr');
     // Sätter fast data raden på tabellen. 
     showArena.appendChild(data_row);   
@@ -538,8 +501,6 @@ function show_arena()
         let td = document.createElement('td');
         td.innerHTML = arena_values[i];
         data_row.appendChild(td); 
-        
-
     }
 }
 
@@ -547,16 +508,12 @@ function show_sections()
 {
      // Tabellen.
      let show_sections = _("show_section_table");
-
      // Header Raden. 
      let header_row = document.createElement('tr');
- 
      // Sätter fast header raden på tabellen. 
      show_sections.appendChild(header_row);    
- 
      // Hämtar nycklarna på en rad. 
      let section_keys = Object.keys(section_data[0]);
- 
  
      // Loopar igenom nycklarna för att skapa header. 
      for(let i = 0; i < section_keys.length; i++) {
@@ -589,16 +546,12 @@ function show_rows()
 {
     // Tabellen.
     let show_rows = _("show_row_table");
-
     // Header Raden. 
     let header_row = document.createElement('tr');
-
     // Sätter fast header raden på tabellen. 
     show_rows.appendChild(header_row);    
-
     // Hämtar nycklarna på en rad. 
     let row_keys = Object.keys(row_data[0]);
-
 
     // Loopar igenom nycklarna för att skapa header. 
     for(let i = 0; i < row_keys.length; i++) {
@@ -609,7 +562,6 @@ function show_rows()
 
     // Loopar igenom alla raders värden. 
     for(let obj_i = 0; obj_i < row_data.length; obj_i++) {
-
         // hämtar raderna.
         let row_values = Object.values(row_data[obj_i]);
         let data_row = document.createElement('tr');
@@ -623,14 +575,9 @@ function show_rows()
                 data_row.appendChild(td); 
         }
     }
-
-    console.dir(document.cookie);
-    console.log(document.cookie);
-
 }
 
 function submitForm() {
     _("multiphase").method = "post";
-	// _("multiphase").action = "../include/classes/admin5.php";
 	_("multiphase").submit();
 }

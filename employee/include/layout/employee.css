@@ -1,0 +1,19 @@
+
+body {
+    background-color:grey;
+}
+.log_in_form {
+    width:200px;
+    margin:auto;
+    margin-top:10%;
+}
+
+.logoGridItem img{
+    width:100px;
+}
+.info {
+    width:20%;
+    margin:auto;
+    background-color:wheat;
+    padding-left:1%;
+}

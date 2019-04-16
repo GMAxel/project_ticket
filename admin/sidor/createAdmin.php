@@ -23,51 +23,14 @@
     <script src="main.js"></script>
 </head>
 <body>
-    
-
-
-
-
-
     <div class="gridContainer"> 
-
         <?php 
             require_once '../include/layout/nav/nav.php';
             require_once '../include/layout/footer/footer.php';
             require_once '../include/layout/search/search.php';
             require_once '../include/layout/logo/logo.php';
-
             require_once '../include/classes/admin.php';
-
-
-            
         ?>
-
-        <div class="gridItem subMenu"> 
-            <div class="subMenuContainer">
-
-                <div class="subLinkContainer">
-                <a href="#" class="subMenuItem">Show [admin]</a>
-
-                </div>
-                <div class="subLinkContainer">
-                <a href="#" class="subMenuItem">Create [admin]</a>
-
-                </div>
-                <div class="subLinkContainer">
-                <a href="#" class="subMenuItem">Edit [admin]</a>
-
-                </div>
-                <div class="subLinkContainer">
-                <a href="#" class="subMenuItem">Delete [admin]</a>
-
-                </div>
-
-            </div>
-        
-        </div>
-
-
         <main class="gridItem">
             <h1> Skapa konto </h1>
 
@@ -81,7 +44,6 @@
                             echo "Konto skapat";
                         };
                     }
-
                 ?>
                 
                 <input type="submit" name="createAcc" value="Skapa konto">

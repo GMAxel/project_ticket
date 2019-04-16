@@ -60,7 +60,7 @@
             <form>
                 
                 <input type="text" name="logInUser" placeholder="Username">
-                <input type="text" name="logInPass" placeholder="Password">
+                <input type="password" name="logInPass" placeholder="Password">
                 <input type="submit" name="login" value="Logga in">
             </forM>
         </main>

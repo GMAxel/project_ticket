@@ -38,18 +38,8 @@
     require_once '../include/classes/admin.php';
 ?>
 
-    <div class="gridItem subMenu"> 
-        <div class="subMenuContainer">
-            <a href="event.php" class="subMenuItem">Events</a>
-            <a href="createEvent.php" class="subMenuItem">Skapa Nytt Event</a>
-            <a href="#" class="subMenuItem">Ändra Event</a>
-            <a href="#" class="subMenuItem">Ta bort Event</a>
-        </div>    
-    </div>
-
-
-
-<main class="gridItem"> main -> Event -> Skapa Event
+<main class="gridItem"> 
+    <h1> Skapa event </h1>
 <form>
     <?php
     $user = new Admin();
@@ -57,9 +47,7 @@
     
     if (isset($_GET['createEvent'])) {
         $event_id = $user->createAccount('events', $columns);
-        echo $event_id;
         $user->copy_table($event_id);
-
     }
     ?>
         <input type="submit" name="createEvent" value="Skapa Event">

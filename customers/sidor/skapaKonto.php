@@ -44,20 +44,26 @@
             <h1>Skapa konto</h1>
 
 
-            <form>  
+            <form method="post">  
             <?php
 
             $user = new Customers();
             $columns = $user->createInputs('customers');
             
-            if(isset($_GET['createAcc'])) {
-                if($user->createAccount('customers', $columns)) {
+            if(isset($_POST['createAcc'])) {
+                if(isset($_POST['userAgreement'])){ 
+                    $user->createAccount('customers', $columns);                 
+                } 
+                else {
+                    echo "<br>Obs! Du måste acceptera villkoren<br>";
                 }
-
+               
             }
             ?>
-
-
+            
+            <h4> Villkor </h4>
+            <p> jag som användare accepterar användandet av mina uppgifter </p>
+            <input type="checkbox" name="userAgreement"> Acceptera Villkoren <br>
             <input type="submit" name="createAcc" value="Skapa konto">
            
             </form>

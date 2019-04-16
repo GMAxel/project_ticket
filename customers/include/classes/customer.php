@@ -64,10 +64,10 @@ class Customers
                 
                 if($value[0] != 'password' && $value[0] != 'username') {
 
-                    $inputValues [] = filter_input(INPUT_GET, $value[0]);
+                    $inputValues [] = filter_input(INPUT_POST, $value[0]);
                 } 
                 else if($value[0] == 'username') {
-                    $inputValues [] = filter_input(INPUT_GET, $value[0]);
+                    $inputValues [] = filter_input(INPUT_POST, $value[0]);
 
                     $username = end($inputValues);
                     $sql = "SELECT * FROM $table WHERE username = '$username'";

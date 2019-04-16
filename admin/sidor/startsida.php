@@ -38,11 +38,10 @@
     require_once '../include/classes/admin.php';
 ?>
 
-<main class="gridItem"> main
+<main class="gridItem"> 
     <?php
 
     $user = new Admin();
-    $user->test_callProc('test');
 
 
     ?>

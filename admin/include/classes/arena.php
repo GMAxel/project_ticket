@@ -21,7 +21,7 @@ class Arena {
             $tableColumns = $stmtGetColumns -> fetchAll(PDO::FETCH_COLUMN);
         
             // tar bort Id elementet från vår array.
-            \array_splice($tableColumns, 0, 1);
+            array_splice($tableColumns, 0, 1);
 
             $this->columnNames = $tableColumns;   
             $this->table = $table; 
@@ -256,22 +256,14 @@ class Arena {
 
             $many_rows->$section_id = new stdClass();
 
-           
-            
-
             foreach($this->columnNames as $elem) {
-                // radrnr + nrOfSeats + section_id(?)
                 if($elem != 'arenaSectionId') {
                     $nrOfRowsVar = 'nr_of_rows_' . $index;
                     $nrOfRows = filter_input(INPUT_POST, $nrOfRowsVar, FILTER_SANITIZE_MAGIC_QUOTES);
 
-
-
                     for($i = 0; $i < $nrOfRows; $i++) {
-
                         if(!$many_rows->$section_id->$i) {
                             $many_rows->$section_id->$i [] = $section_id;  
-
                         }  
                         $looped_elem = $elem . '_' . $i . '_' . $index;
 

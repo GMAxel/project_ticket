@@ -40,7 +40,7 @@
             
             if(isset($_GET['login'])) {
                 if($user->login('admin')) {
-                    header('Location: startsida.php');
+                    header('Location:startsida.php');
                 }
                 else {
                     echo "Fel användarnamn eller lösenord";

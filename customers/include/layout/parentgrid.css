@@ -40,7 +40,7 @@ body {
     "footer footer footer footer footer footer footer footer footer footer footer footer";
      */
      grid-template-areas:
-     " logo  logo logo search search search search search search search header  header aside aside  "
+     " logo  logo logo search search search search search search header header  header aside aside  "
 
     "logo logo logo nav nav nav nav nav nav nav nav nav nav nav "
 

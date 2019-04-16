@@ -34,6 +34,7 @@
         require_once '../include/layout/logo/logo.php';
 
 
+        require_once '../include/classes/purchaser.php';
 
         ?>
         <main class="gridItem">  
@@ -45,27 +46,11 @@
             </ul>
 
             <div class="myTicketsContainer"> 
-
                 <table class="tableMinaSidor">
-                    <tr>
-                        <th>Event</th>
-                        <th>Pris </th>
-                        <th> Datum </th>
-                        <th>Biljett </th>
-
-                    </tr>
-                    <tr>
-                        <td> AIK-DIF </td>
-                        <td> 199kr </td>
-                        <td> 13/12-2019 </td>
-                        <td> 134 </td>
-                    </tr>
-                    <tr>
-                        <td> DIF-AIK </td>
-                        <td> 29kr </td>
-                        <td> 25/12-2019 </td>
-                        <td> 201 </td>
-                    </tr>
+                <?php 
+                    $my_purchase = New Purchaser;
+                    $my_purchase->my_purchases();
+                ?>
                 </table>
             </div>
                 

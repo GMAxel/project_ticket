@@ -55,7 +55,8 @@ class Events
         echo "<textarea id='event_tickets'>$json </textarea> ";
     }
 
-    // Hämtar alla biljetter som finns till min cart. 
+    // Hämtar alla biljetter som finns till min cart,
+    // Så att vi sedan kan visas relevant data i carten. 
     function display_all_tickets() {
         $sql = "SELECT e.id AS 'eventId', a.id AS 'arenaId', sections.id AS 'sectionId', a_rows.id AS 'rowId', seats.id, sections.section AS 'Sektion', a_rows.row_number 'Rad', 
         seats.seat AS 'Plats' FROM seatStatus as ss

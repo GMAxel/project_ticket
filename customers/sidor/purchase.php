@@ -34,35 +34,67 @@
 
         require_once '../include/classes/customer.php';
         require_once '../include/classes/events.php';
+        require_once '../include/classes/purchaser.php';
+
 
 
         ?>
 
         <main class="gridItem">
-            <h1>Thank you for your purchase!</h1>
 
             <?php
-            // Hämta från cookien
-            $ids = explode(",", $_COOKIE["cart"]);
-            
+            // Ids of tickets requsetd by customer (string).
+            $cart = $_COOKIE["cart"];
+            // Turn into array.
+            $cart_arr = explode(',', $cart);
+
+            print_r($cart);
+            // Declar object.
             $purchase_service = new Purchaser;
+            // // 1. Check if tickets are available
+            // $bool = $purchase_service->is_buyable($cart_arr);
+            // echo "<br> bool = " . $bool . "<br><br>";
 
-            function is_sold() {
-                return false; // TODO
-            }
+            $orderId = $purchase_service->register_purchase($cart_arr);
 
-            // Se till att vi inte köper dubletter
-            $purchasable_tickets = array_filter($ids, function($id) {
-                return !$purchase_service->is_sold($id);
-            });
+            // Register purchase.
+            // if($purchase_service->register_purchase($cart_arr)) {
+            //     echo "<h1> Tack för ditt köp! </h1>";
+            // }
+            // else {
+            //     echo "<h2> Köp kunde inte genomföras </h2>";
+            // }
 
-            print_r($purchasable_tickets);
+            
+            
+            // Hämta från cookien
+            // $ids = implode(",", $_COOKIE["cart"]);
 
-            // Registrera köp i databasen
-            $purchase_service.register_purchase($purchasable_tickets);
+            // foreach($_COOKIE["cart"] as $ticket) {
+            //     $ids = '(' . $ticket . ')';
+            // }
+            // $idsString = implode(",", $ids);
 
-            // Töm cart cookien
-            ?>
+            
+
+            // $purchase_service = new Purchaser;
+
+            // function is_sold() {
+            //     return false; // TODO
+            // }
+
+            // // Se till att vi inte köper dubletter
+            // $purchasable_tickets = array_filter($ids, function($id) {
+            //     return !$purchase_service->is_sold($id);
+            // });
+
+            // print_r($purchasable_tickets);
+
+            // // Registrera köp i databasen
+            // $purchase_service.register_purchase($purchasable_tickets);
+
+            // // Töm cart cookien
+            // ?>
             </table>
         </main>
         

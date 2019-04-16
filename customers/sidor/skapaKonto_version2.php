@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require_once '../include/classes/admin.php';
     require_once '../include/classes/admin2.php';
 

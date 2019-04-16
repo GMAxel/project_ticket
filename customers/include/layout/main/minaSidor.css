@@ -37,18 +37,24 @@
 
     text-align:center;
     margin:auto;
-    width:35%;
+    width:60%;
 }
 .tableMinaSidor th {
     border-bottom:2px solid black;
     border-top:2px solid black;
+    border-right:1px solid black;
+
+    min-width:90px;
+    font-size:0.8em;
 }
 
-.tableMinaSidor td, .tableMinaSidor th   {
-    border-right:2px solid black;
-    border-bottom:2px solid black;
+.tableMinaSidor td   {
+    border-right:1px solid black;
+    border-bottom:1px solid black;
+    font-size:0.8em;
 
 }
 .tableMinaSidor td:first-child, .tableMinaSidor th:first-child  {
-    border-left:2px solid black;
+    border-left:1px solid black;
+    
 }

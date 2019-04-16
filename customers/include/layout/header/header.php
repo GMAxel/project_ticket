@@ -9,7 +9,10 @@
 
         if($user->login('customers')) {
             header('Location: startsida.php');
-        };
+        } 
+        else {
+            echo "Inloggning misslyckad";
+        }
 
 
     }
@@ -43,7 +46,7 @@
         if(isset($_SESSION['logged_in'])) { ?>
             <div class="loggedInContainer">
                 <div class="logoutContainer">
-                    <form>
+                    <form method="post">
                         <button name="logOut"> Logga ut </button>
                     </form>
                 </div>
@@ -59,7 +62,7 @@
                 </div>
 
                 <div class="logInInputs">
-                    <form>
+                    <form method="post">
                         <input type="text" name="user" placeholder="username">
                         <input type="password" name="pass" placeholder="lösenord">
                         <input type="submit" name="login" value="Log in">

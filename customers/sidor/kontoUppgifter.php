@@ -49,45 +49,36 @@
 
             <div class="myTicketsContainer"> 
                 
-            <form>
-                <?php
-                    $user = new Customers();
-                    $user->view('customers');
+                <form method="post">
+                    <?php
+                        $user = new Customers();
+                        if(isset($_POST['changeAcc'])) {
+                            $user->myAccount();
+                            if($user->update_account()){
+                                echo "Konto ändrat";
+                            }
+                            else {
+                                echo "Något gick snett - Försök igen senare";
 
-
-                ?>
-                
-                <!-- <div>
-                    <input type="text" name="firstname" placeholder="Firstname" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="lastname" placeholder="lastname" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="email" placeholder="email" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" name="phone" placeholder="Telefonnummer" class="signUpInputs">
-                </div>
-
-                <div>
-                    <input type="text" placeholder="username" class="signUpInputs">
-                </div>
-                <div>
-                    <input type="password" placeholder="password" class="signUpInputs">
-                </div>
-                <div>
-                    <input type="submit" value="Ändra konto" class="signUpInputs">
-                </div> -->
-            
-           
-        </form>
+                            }
+                        }
+                        if(isset($_POST['deleteAcc'])) {
+                            $user->myAccount();
+                            if($user->soft_delete()) {
+                                header('Location:startsida.php');
+                                echo "Konto Borttaget";
+                            }
+                            else {
+                                echo "Något gick snett - Försök igen senare";
+                            }
+                        }
+                    ?>
+                    <br>
+                    <button type="button" name="changeAcc"> Ändra Konto </button>
+                    <br><br>
+                    <button type="button" name="deleteAcc"> Ta bort konto </button>
+                </form>
             </div>
-                
-
         </main>
         
     </div>

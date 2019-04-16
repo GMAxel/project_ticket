@@ -339,4 +339,43 @@ Sedan hämtar vi cookien i PHP, och skriver JSON_decode()
 
 
 
-control d
+control d == markerar samma %?% som finns nära. 
+
+
+TO DO -------------------------------------------------------------------
+Nu behöver vi göra så att det endast är om kunden är inloggad som
+den kan genomföra köp. 
+if(isloggedin) {
+    genomför köp
+} else {
+    du måste logga in först!
+}
+
+Sen ska vi registrera order. Här tar vi som argument:
+- kundens id, 
+- vi använder date funktion för att sätta dagens datum,
+- vi räknar ut den totala kostnaden genom SUM(tickets);
+
+
+- Koppla samman kund med köp.
+- Göra det möjligt att söka efter ett ticket-id för att få fram
+    huruvida biljetten är köpt & skannad. 
+- Ta bort kod som vi inte använder, definiera tydligare klasser och
+    funktioner. 
+- ta bort menyval som inte är aktiva, alternativt gör de aktiva. 
+- kommentera kod tydligt. 
+- Följ kodstandard.
+- publicera på site. 
+
+Tanke: 
+- Ha en klass för köp och en för cart?
+    - Då kan vi koppla in customer objektet till köp. 
+- med hjälp av JS se till att kund inte väljer samma biljett två gånger?
+
+
+
+Fixa:
+ - Login med POST istället för get. 
+- Cookies ska försvinna när jag 'köper'.
+
+

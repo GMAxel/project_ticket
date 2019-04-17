@@ -11,8 +11,6 @@
         else {
             echo "Inloggning misslyckad";
         }
-
-
     }
 
     if(isset($_POST['logOut'])) {

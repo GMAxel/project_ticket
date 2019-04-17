@@ -17,6 +17,7 @@
     <script src="../include/js/extra.js"></script>
 
 
+
 </head> 
 <body>
     <div class="gridContainer">
@@ -49,7 +50,6 @@
                 <?php
 
                 if(isset($_GET['displayRows'])) {
-                    echo "ja";
                     $event = new Events;
                     $event->display_event($_GET['chosen_section']);
                 }
@@ -60,7 +60,6 @@
             </table>
         </main>
         
-    </div>
-   
+    </div>   
 </body>
 </html>

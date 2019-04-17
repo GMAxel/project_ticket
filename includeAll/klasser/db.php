@@ -5,7 +5,13 @@
  */
 class DB 
 {
-   
+    private $_host = 'my33b.sqlserver.se';
+    private $_dbName = '236972-tickets';
+    private $_user = '236972_yf56592';
+    private $_pass = 'XT6xyYWbc7Gw99V';
+    private $_charset = 'utf8mb4';
+    public $pdo;
+
     /** 
      * Anslutning DB 
      * */

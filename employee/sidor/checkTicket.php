@@ -6,29 +6,21 @@
     <title>Admin Startsida</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/employee.css">
-
-
-    <script src="main.js"></script>
 </head>
 <body>
     
 <div class="gridItem logoGridItem">
-<div class="logoContainer">
-        <a href="../../../../index.php"><img src="../../includeAll/imgs/logo.png"></a>
+    <div class="logoContainer">
+            <a href="../../../../index.php"><img src="../../includeAll/imgs/logo.png"></a>
+    </div>
 </div>
-</div>
-
-
-
-
-
     <div class="gridContainer"> 
         <p class="info">
         <?php 
         require_once '../include/classes/employee.php';
         $user = new Employee();
-        $ticket = $_GET['ticket_id'];
         if(isset($_GET['action'])) {
+            $ticket = $_GET['ticket_id'];
             if($user->checkIfExist()) {
                 echo "Biljett: $ticket finns";
                 if($user->checkIfBought('employees')) {
@@ -43,13 +35,10 @@
                         else {
                             echo "<br>Biljetten skannades inte, försök igen.";
                         }
-                        
                     }
                     else {
                         echo "<br>OBS! Biljett är redan skannad.";
                     }
-
-
                 }
                 else {
                     echo "<br>OBS! Biljett ej köpt";

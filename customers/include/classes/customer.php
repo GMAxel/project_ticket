@@ -31,10 +31,14 @@ class Customers
         {
             if($col[0] != 'id') {
                 $columns [] = $col[0];
-                if($col[0] != 'password') {
-                echo "<div class=''><input type='text' placeholder='$col[0]' name='$col[0]'></div>";   
-                } else {
+                if($col[0] === 'password') {
                     echo "<div class=''><input type='password' placeholder='$col[0]' name='$col[0]'></div>";   
+                }
+                elseif($col[0] === 'email') {
+                    echo "<div class=''><input type='email' placeholder='$col[0]' name='$col[0]'></div>";   
+                }
+                 else {
+                    echo "<div class=''><input type='text' placeholder='$col[0]' name='$col[0]'></div>";   
                 }
             }
         }
@@ -112,8 +116,8 @@ class Customers
 
     public function login($table) {
 
-        $user = $_POST['user'];      
-        $pass = $_POST['pass'];  
+        $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_MAGIC_QUOTES);
+        $pass = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_MAGIC_QUOTES);
        
         // Hämta lösenordet koppålat till användarnamnet. 
         $sql = "SELECT password, id 
@@ -125,21 +129,10 @@ class Customers
         $stmt->execute();
         // Fetchcolumn hämtar ett värde istället för en array i en array. 
         $result = $stmt->fetch(PDO::FETCH_NUM);
-
-        var_dump($result);
-
-
         $hash = $result[0];
         $customerId = $result[1];
-
-    
         // Verfifiera att lösenordet stämmer överens med hash.
         $this->is_logged_in = password_verify($pass, $hash);
-
-        var_dump($this->is_logged_in);
-        var_dump(password_verify($pass, $hash));
-
-        
 
         if($this->is_logged_in) {
             $_SESSION['logged_in'] = true;
@@ -150,8 +143,6 @@ class Customers
                 echo "Sessionvärde: $key : $value <br>";
             }
         }
-
-
         return $this->is_logged_in; 
     }
 
@@ -200,7 +191,7 @@ class Customers
                     echo "<br> $key <br><input type='email' name='$key' value='$value'>";
                 }
                 else if($key === 'password') {
-                    echo "<br> $key <br><input type='password' name='$key' value=''>";
+                    echo "<br> $key <br><input type='password' name='$key' value='$value'>";
                 }
                 else {
                     echo "<br> $key <br><input type='text' name='$key' value='$value'>";
@@ -243,10 +234,11 @@ class Customers
                 }
                 else  {
                     echo "emailen suger <br>";
+                    return false;
                 }
             }
             else if($elem === 'username') {
-                $inputData [] = filter_input(INPUT_GET, $elem, FILTER_SANITIZE_MAGIC_QUOTES);
+                $inputData [] = filter_input(INPUT_POST, $elem, FILTER_SANITIZE_MAGIC_QUOTES);
                 $username = end($inputData);
 
                 // Här kollar vi om användarnamnet redan finns. 
@@ -260,9 +252,18 @@ class Customers
                 }
             }
             else if($elem == 'password') {
+                $checkIfNew = "SELECT password FROM customers
+                                WHERE id = $customerId;";
+                $checkPass = $this->_db->prepare($checkIfNew);
+                $checkPass->execute();
+                $res = $checkPass->fetch(PDO::FETCH_COLUMN);
                 $pass = filter_input(INPUT_POST, $elem, FILTER_SANITIZE_MAGIC_QUOTES);
-                $hash = password_hash($pass, PASSWORD_DEFAULT);
-                $inputData [] = $hash;
+                    if($pass !== $res) {
+                        $hash = password_hash($pass, PASSWORD_DEFAULT);
+                        $inputData [] = $hash;
+                    } else {
+                        $inputData [] = $pass;
+                    }
             }
             else { 
                 $inputData[] = filter_input(INPUT_POST, $elem, FILTER_SANITIZE_MAGIC_QUOTES);
@@ -273,8 +274,8 @@ class Customers
        
         // Här lagrar vi en placeholder för varje värde vi ska skicka in.
          $placeholders = [];
-         for($i = 0; $i < count($this->columnNames); $i++) {
-             if($i < (count($this->columnNames)-1)) {
+         for($i = 0; $i < count($inputData); $i++) {
+             if($i < (count($inputData)-1)) {
                 $placeholders [] = ' ?, ';
              } else {
              $placeholders [] = ' ?';
@@ -302,12 +303,12 @@ class Customers
         //  Här binder vi värdet till placeholdersna
          $i = 1;
          foreach($inputData as $value) {
-             echo $value;
              $stmt->bindValue($i, $value);
              $i++;
          }
          
          $stmt->execute();  
+         return true;
     }
 
     // Om användaren tar bort sitt konto så tar vi bort känslig information, samt säger att användaren inte längre existerar. vi tar inte bort användaren.      

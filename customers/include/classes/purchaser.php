@@ -124,21 +124,25 @@ class Purchaser {
         $stmt = $this->_db->prepare($sql_select);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        print_r($result);
         // Här skapar jag headers för tabellen. 
-        echo "<tr>";
-        foreach($result[0] as $key => $value) {
-            echo "<th> $key </th>";
-        }
-        echo "</tr>";
-
-        // Här skickar jag in värdena in i tabellen. 
-        foreach($result as $ticket) {
+        if($result) {
             echo "<tr>";
-            foreach($ticket as $key => $value) {
-                echo "<td> $value </td> ";
+            foreach($result[0] as $key => $value) {
+                echo "<th> $key </th>";
             }
             echo "</tr>";
+
+            // Här skickar jag in värdena in i tabellen. 
+            foreach($result as $ticket) {
+                echo "<tr>";
+                foreach($ticket as $key => $value) {
+                    echo "<td> $value </td> ";
+                }
+                echo "</tr>";
+            }
+        }
+        else {
+            echo "<br> Du har inte köpt något :) <br>";
         }
 
     }

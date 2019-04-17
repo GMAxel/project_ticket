@@ -35,8 +35,6 @@ class Events
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($result);
         echo "<textarea id='event_info' hidden>$json </textarea> ";
-
-        // 13	293	459	69	316	1	0	1
     }
 
     function display_tickets($event) {
@@ -75,8 +73,6 @@ class Events
         JOIN arenaSectionRows AS a_rows ON a_rows.arenaSectionId = sections.id
         JOIN arenaSectionRowSeats AS seats ON seats.arenaSectionRowId = a_rows.id
         GROUP BY seats.id;
-
-        
         ";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -108,7 +104,6 @@ class Events
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($result);
         echo "<textarea id='event' hidden>$json </textarea> ";
-
     }
 
     function display_rows($columnId) {

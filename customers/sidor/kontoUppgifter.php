@@ -37,31 +37,33 @@
                 <form method="post">
                     <?php
                         $user = new Customers();
+                        $user->myAccount();
+
                         if(isset($_POST['changeAcc'])) {
-                            $user->myAccount();
                             if($user->update_account()){
-                                echo "Konto ändrat";
+                                echo "<script> window.location.href = window.location.href</script>";
+                                echo "<br>Konto ändrat";
+                                return true;
                             }
                             else {
-                                echo "Något gick snett - Försök igen senare";
-
+                                echo "<br>Något gick snett - Försök igen senare";
                             }
                         }
                         if(isset($_POST['deleteAcc'])) {
                             $user->myAccount();
                             if($user->soft_delete()) {
                                 header('Location:startsida.php');
-                                echo "Konto Borttaget";
+                                echo "<br>Konto Borttaget";
                             }
                             else {
-                                echo "Något gick snett - Försök igen senare";
+                                echo "<br>Något gick snett - Försök igen senare";
                             }
                         }
                     ?>
                     <br>
-                    <button type="button" name="changeAcc"> Ändra Konto </button>
+                    <input type="submit" name="changeAcc" value="Ändra konto">
                     <br><br>
-                    <button type="button" name="deleteAcc"> Ta bort konto </button>
+                    <input type="submit" name="deleteAcc" value="Ta bort konto"> 
                 </form>
             </div>
         </main>

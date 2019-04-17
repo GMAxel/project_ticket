@@ -1,10 +1,7 @@
 <?php
     session_start();
-    // require_once '../include/classes/admin4.php';
-    // require_once '../include/classes/admin.php';
-    // require_once '../include/classes/admin4.php';
-        require_once '../include/classes/admin5.php';
-        require_once '../include/classes/arena.php';
+    require_once '../include/classes/admin5.php';
+    require_once '../include/classes/arena.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +14,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/nav/nav.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/search/search.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/logo/logo.css">
-
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/main/test_skapa_arena_4.css">
-
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/parentgrid.css">
-    <script src="../include/js/multi_step_form2.js"></script>
-    <script src="../include/js/multi_step_form3.js"></script>
+    <script src="../include/js/multi_step_form.js"></script>
 
 </head>
 <body>
@@ -46,10 +38,9 @@
         <form method="post" name="multiphase" id="multiphase"> 
             <!-- Fas 1 -->
             <div id="phase1">
-                <div id="phase_1_input-container"> 
-                </div>
+                <div id="phase_1_input-container"></div>
                 <br>
-                <button type="button" onclick="processPhase1()"> 
+                <button type="button" id="processPhase1"> 
                     Continue
                 </button>
                 <br>
@@ -58,12 +49,12 @@
             <!-- Fas 2 -->
             <div id="phase2">
                 <input type="number" id="nrOfSections" name="nrOfSections" placeholder="Antal Sektioner"><br>
-                <button type="button" name="test_getSections" onclick="createSections()">
+                <button type="button" name="test_getSections" id="createSections">
                     Create sections 
                 </button>
                 <div id="phase_2_input-container"></div>
                 <br>
-                <button type="button" id="phase2_continue" onclick="processPhase2()"> 
+                <button type="button" id="phase2_continue"> 
                     Continue
                 </button>
                 <br>
@@ -73,7 +64,7 @@
             <div id="phase3">
                 <h1> fas 3 </h1>
                 <div id="phase3_input_container"></div>
-                <button type="button" onclick="processPhase3()">Continue</button> 
+                <button type="button" id="processPhase3">Continue</button> 
             </div>
             
             <!-- Fas 4 -->

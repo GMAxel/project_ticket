@@ -85,7 +85,7 @@ class Customers
                 }
                 else {
 
-                    $pass = filter_input(INPUT_GET, $value[0]);
+                    $pass = filter_input(INPUT_POST, $value[0]);
                     $hash = password_hash($pass, PASSWORD_DEFAULT);
                     $inputValues [] = $hash;
                 }
@@ -112,14 +112,10 @@ class Customers
 
     public function login($table) {
 
-        $user = $_POST['user'];
-
-      
-        $pass = $_POST['pass'];
-     
+        $user = $_POST['user'];      
+        $pass = $_POST['pass'];  
        
         // Hämta lösenordet koppålat till användarnamnet. 
-
         $sql = "SELECT password, id 
                 FROM $table 
                 WHERE username = ?";
@@ -132,11 +128,16 @@ class Customers
 
         var_dump($result);
 
+
         $hash = $result[0];
         $customerId = $result[1];
 
+    
         // Verfifiera att lösenordet stämmer överens med hash.
         $this->is_logged_in = password_verify($pass, $hash);
+
+        var_dump($this->is_logged_in);
+        var_dump(password_verify($pass, $hash));
 
         
 

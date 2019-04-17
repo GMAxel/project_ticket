@@ -1,1 +1,1 @@
-<footer class="gridItem">footer</footer>
+<footer class="gridItem"></footer>

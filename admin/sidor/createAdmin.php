@@ -10,17 +10,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/varukorg/varukorg.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/search/search.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/logo/logo.css">
-
-    
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/main/startsida.css">
-
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/parentgrid.css">
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/main/submenu.css">
-
-    <script src="main.js"></script>
 </head>
 <body>
     <div class="gridContainer"> 

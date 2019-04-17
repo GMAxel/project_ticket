@@ -10,22 +10,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/varukorg/varukorg.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/search/search.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/logo/logo.css">
-
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/main/startsida.css">
-
-
     <link rel="stylesheet" type="text/css" media="screen" href="../include/layout/parentgrid.css">
-    <script src="main.js"></script>
 </head>
 <body>
     
 </body>
 </html>
-
-
-
-
 
 <div class="gridContainer"> 
 
@@ -34,7 +25,6 @@
     require_once '../include/layout/footer/footer.php';
     require_once '../include/layout/search/search.php';
     require_once '../include/layout/logo/logo.php';
-
     require_once '../include/classes/admin.php';
 ?>
 

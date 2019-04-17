@@ -1,6 +1,6 @@
 <?php
 
-require_once '/app/public/projektarbete/project_ticket/includeAll/klasser/db.php';
+require_once '../../includeAll/klasser/db.php';
 
 class Admin_test {
     private $_db;

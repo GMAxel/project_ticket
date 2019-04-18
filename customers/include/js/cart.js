@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let events = JSON.parse(_('events').value);
     let tickets = JSON.parse(_('all_tickets').value);
 
-    // 
+    // Visar vad som finns i våra tickets som finns i vår cookie
     function getCartItems() {
         let cartCookie = document.cookie
             .split(';')
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(!cartCookie) {
             return [];
         } 
-    
         return cartCookie   
             .split('=')[1]
             .split(',')

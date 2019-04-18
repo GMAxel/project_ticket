@@ -50,9 +50,8 @@
                             }
                         }
                         if(isset($_POST['deleteAcc'])) {
-                            $user->myAccount();
                             if($user->soft_delete()) {
-                                header('Location:startsida.php');
+                                echo "<script> window.location.href = 'startsida.php'</script>";
                                 echo "<br>Konto Borttaget";
                             }
                             else {

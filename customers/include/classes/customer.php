@@ -118,32 +118,39 @@ class Customers
 
         $user = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_MAGIC_QUOTES);
         $pass = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_MAGIC_QUOTES);
-       
-        // Hämta lösenordet koppålat till användarnamnet. 
-        $sql = "SELECT password, id 
-                FROM $table 
-                WHERE username = ?";
-                
-        $stmt = $this->_db->prepare($sql);
-        $stmt->bindValue(1, $user);
-        $stmt->execute();
-        // Fetchcolumn hämtar ett värde istället för en array i en array. 
-        $result = $stmt->fetch(PDO::FETCH_NUM);
-        $hash = $result[0];
-        $customerId = $result[1];
-        // Verfifiera att lösenordet stämmer överens med hash.
-        $this->is_logged_in = password_verify($pass, $hash);
 
-        if($this->is_logged_in) {
-            $_SESSION['logged_in'] = true;
-            $_SESSION['user'] = "$user";
-            $_SESSION['user_id'] = $customerId;
-
-            foreach($_SESSION as $key => $value) {
-                echo "Sessionvärde: $key : $value <br>";
-            }
+        if($user === 'Soft Delete') {
+            echo "noice try m8";
+            return false;
         }
-        return $this->is_logged_in; 
+        else {
+       
+            // Hämta lösenordet koppålat till användarnamnet. 
+            $sql = "SELECT password, id 
+                    FROM $table 
+                    WHERE username = ?";
+                    
+            $stmt = $this->_db->prepare($sql);
+            $stmt->bindValue(1, $user);
+            $stmt->execute();
+            // Fetchcolumn hämtar ett värde istället för en array i en array. 
+            $result = $stmt->fetch(PDO::FETCH_NUM);
+            $hash = $result[0];
+            $customerId = $result[1];
+            // Verfifiera att lösenordet stämmer överens med hash.
+            $this->is_logged_in = password_verify($pass, $hash);
+
+            if($this->is_logged_in) {
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user'] = "$user";
+                $_SESSION['user_id'] = $customerId;
+
+                foreach($_SESSION as $key => $value) {
+                    echo "Sessionvärde: $key : $value <br>";
+                }
+            }
+            return $this->is_logged_in; 
+        }
     }
 
     public function view($table) 
@@ -313,7 +320,7 @@ class Customers
 
     // Om användaren tar bort sitt konto så tar vi bort känslig information, samt säger att användaren inte längre existerar. vi tar inte bort användaren.      
     public function soft_delete() {
-
+        $this->get_db_column_names('customers');
         $customerId = $_SESSION['user_id'];
         $softDelete = 'Soft Delete';    
         
@@ -330,46 +337,27 @@ class Customers
         //  columnnames är tabellens kolumnnamn som vi använder.
         // Här kombinerar vi de som nyckel => värde. 
         $key_value = array_combine($this->columnNames, $placeholders);
-
         //  Här lagrar vi våra nyckel=>värden som en sträng.
+        print_r($key_value);
          $update_string= '';
          foreach($key_value as $key => $value) {
             $update_string .= $key . ' = ' . $value;
          }
-
          $sql_update = "UPDATE customers
                         SET $update_string 
                         WHERE id = $customerId;";
-          
           $stmt = $this->_db->prepare($sql_update);
 
-          print_r($key_value);
         //  Här binder vi värdet till placeholdersna
          $i = 1;
-         foreach($columnNames as $value) {
-             $stmt->bindValue($i, $softDelete);
-             $i++;
+         for($i = 1; $i <= count($this->columnNames); $i++) {
+             echo "<hr>index = $i <br>";
+             echo " Värde = $softDelete <br><hr>";
+             $stmt->bindValue($i, $softDelete, PDO::PARAM_STR);
          }
-        //  $stmt->execute();      
-        // $_SESSION = array();
-
+        $stmt->execute();
+        $_SESSION = array();
         return true;
     }
 }
 
-
-
-
-
-// funktion för att skapa konto.
-// funktion för att logga in + logga ut. 
-// funktion för att ta bort detaljer som kan identifiera en kund.
-// Funktion för att uppdetare kontouppgifter.
-// Funktion för att se köpta biljetter. 
-
-
-
-// Hämta kolumnerna från angiven tabell.
-// Visa kolumnerna i input fält.
-// hämta värdena från inputfälten genom att köra en foreach med kolumnnamnen som vi satte in i inputsen.
-// 

@@ -159,7 +159,7 @@
 </ul>
 
 <h2>UML</h2>
-<img src="readme_imgs.uml.png">
+<img src="readme_imgs/uml.PNG">
 <h3> DoD </h3>
 <ul>
     <li>Kod testat och klarar testmiljö. </li>

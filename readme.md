@@ -169,3 +169,5 @@
     <li>DB upplagd på tillgänglig server</li>
     <li>Dokumentation klar </li>
 </ul>
+
+<a href="http://tickets.loboessence.se/index.php"><b>Länk till sidan </b></a>

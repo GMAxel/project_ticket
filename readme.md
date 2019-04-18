@@ -26,340 +26,146 @@
     </li>
 </ul>
 
+<h2> Server </h2>
+<ul> 
+    <li>Subdomän på binero </li>
+    <li>Skickar till binero via filezilla </li>
+    <li>DB i phpMyadmin</li>
+</ul>
 
+<h2>User Stories </h2>
+<h3> Jag som användare vill kunna... </h3>
+<h4> Events </h4>
+<ul>
+    <li>Söka efter event</li>
+    <li>Se kommande event </li>
+    <li>Se events av typen sport </li>
+    <li>Se events av typen konsert </li>
+    <li>Kunna välja att se events av kategorin:
+        <ul>
+            <li>Sport</li>
+            <li>Konsert</li>
+            <li>Etc</li>
+        </ul>
+     </li>
+    <li>Kunna välja att se events av subkategorin:
+        <ul>
+            <li>Fotboll</li>
+            <li>Ishockey</li>
+        </ul>
+    </li>
+    <li>Kunna välja att se events av subkategorin:
+        <ul>
+            <li>Fotboll, män</li>
+            <li>Fotboll, kvinnor</li>
+            <li>Ishockey, män</li>
+            <li>Ishockey, kvinnor</li>
+        </ul>
+    </li>
+    <li>Kunna välja:
+        <ul>
+            <li>sektion</li>
+            <li>rad</li>
+            <li>plats</li>
+        </ul>
+    </li>
+</ul>
 
-Github
-Master
-Test
-Develop
-feature
-Server
-Subdomän på binero.
-Skicka till binero via filezilla.
-Databas i phpMyAdmin. 
-Hitta ett sätt att importera databas till phpMyAdmin från antingen:
-En annan db i phpmyadmin.
-Workbench. 
-User stories
-Användare
-Jag som användare vill kunna:
-Events:
-Söka efter event. 
-Se kommande events.
-Se events av typen sport.
-Se events av typen Konsert.
-Kunna välja att se events av kategorin:
-Sport.
-Konsert
-Etc
-Kunna välja att se events av subkategorin:
-Fotboll
-Ishockey
-Etc.
-Kunna välja att se events av subkategorin:
-Fotboll, Män.
-Fotboll, Kvinnor.
-Ishockey, Män.
-Ishockey, Kvinnor.
-Etc.
-Kunna välja:
-Sektion
-Rad
-Plats
-Flera platser bredvid varandra.
-Konto:
-Se mina uppgifter.
-Ändra mina uppgifter.
-Ta bort mitt konto.
-Skapa konto. 
-Logga in.
-Logga ut.
-Se mina ordrar.
-Se detaljer på mina ordrar.
-Se vilka event jag har köpt biljetter till.
-Kunna välja att filtrera så jag endast ser event jag har köpt biljetter till som ännu varit. 
-Få ett mail med ordernr, pris och annan relevant information. 
-Varukorg:
-Lägga till biljetter i varukorg.
-Se totalpriset av min varukorg.
-Kunna gå till kassa. 
-Se innehållet av min varukorg. 
-Se hur lång tid det är innan min varukorg timear ut. 
-Admin
-Jag som admin vill kunna:
-Konto:
-Logga in / logga ut.
-Skapa:
-Kunder.
-Anställda.
-Admins.
-Events.
-Arenor.
-Sections.
-Rows.
-seats.
-Se:
-Kunder.
-Anställda.
-Admins.
-Events.
-Arenor.
-Uppdatera:
-Kunder.
-Anställda.
-Admins
-Events.
-Arenor.
+<h4> Konto </h2>
+<ul>
+    <li>Se mina uppgifter</li>
+    <li>Ändra mina uppgifter</li>
+    <li>Ta bort mitt konto</li>
+    <li>Skapa konto </li>
+    <li>Logga in </li>
+    <li>Logga ut </li>
+    <li>Se mina ordrar</li>
+    <li>Se detaljer på mina ordrar</li>
+    <li>Se vilka event jag har köpt biljetter till</li>
+    <li>Kunna välja att filtrera så jag endast ser event jag har köpt biljetter till som ännu varit.</li>
+    <li>Få ett mail med ordernr, pris och annan relevant information. </li>
+    <li></li>
+</ul>
 
+<h4>Varukorg</h4>
+<ul>
+    <li>Lägga till biljetter i varukorg</li>
+    <li>Se totalpriset av min varukorg</li>
+    <li>Kunna gå till kassa</li>
+    <li>Se innehållet av min varukorg</li>
+    <li>Se hur lång tid det är innan min varukorg timear ut.</li>
+</ul>
 
-Employee
-Jag som employee vill kunna:
-Logga in.
-Logga ut. 
-‘Skanna’ Biljetter för att se om biljetten är köpt.
-‘Skanna’ Biljetter för att se om biljetten redan är skannad. 
-‘Skanna’ Biljetter och se vem som har köpt den. 
-Prioritet
-Prio 1
-Skapa Arena:
-Använd Stored Procedure för att skapa arena, section, rad och platser samtidigt. 
-Arena AV SEATS: 100.
-SECTION (arena 1) 1: 50;
-SECTION (arena 1) 2: 50;
-ROW (section1) 1: 25;
-ROW (section2) 2: 25;
-SEAT (row1) 1: plats1;
+<h3>Jag som Admin vill kunna...</h3>
+<ul>
+    <li>Logga in / logga ut</li>
+    <li>Skapa:
+        <ul>
+            <li>Kunder</li>
+            <li>Anställda</li>
+            <li>Admins</li>
+            <li>Events</li>
+            <li>Arenor</li>
+            <li>Sections</li>
+            <li>Rows</li>
+            <li>Seats</li>
+        </ul>
+    </li>
+    <li>Se:
+        <ul>
+            <li>Kunder </li>
+            <li>Anställda </li>
+            <li>Admins </li>
+            <li>Events </li>
+            <li>Arenor </li>
+        </ul>
+    </li>
+    <li> Uppdatera
+          <ul>
+            <li>Kunder </li>
+            <li>Anställda </li>
+            <li>Admins </li>
+            <li>Events </li>
+            <li>Arenor </li>
+        </ul>
+    </li>
+    
+</ul>
 
-Skapa antalet platser (seats) med hjälp av rows, seats, arenas.
-Kommer behöva JOINA:
-Arena.
-Sections
-Rows.
-Seats.
+<h3>Jag som Employee vill kunna...</h3>
+<ul>
+    <li> Uppdatera
+          <ul>
+            <li>'Skanna' biljetter för att se om:
+                <ul>
+                    <li>Biljetten redan är köpt</li>
+                    <li>Biljetten finns.</li>
+                    <li>Biljetten redan är skannad.</li>
+                    <li>Vem som har köpt den</li>
+                </ul>
+            </li>
+            <li>Anställda </li>
+            <li>Admins </li>
+            <li>Events </li>
+            <li>Arenor </li>
+        </ul>
+    </li>
+</ul>
 
-EXTRA - Skapa visualisering av arenan:
-Hämta alla platser från arenan.
-Alla platser som finns i tickets är:
-Gröna = Ej såld.
-Röd = Köpt.
-Svart = Säljs ej. 
-Skapa event
-Kategorier
-Skapa tickets.
-Skapa antalet biljetter beroende på arena. 
-EJ PRIO
-Skapa antalet platser beroende på öppna sections, rows etc. 
+<h3>Extra</h3>
+<ul>
+    <li>Skapa visualisering av arenan via färglagda divs. Gröna = kan köpas, gråa = kan inte köpas</li>
+    <li>Skapa antalet platser beroende på öppna sections, rows etc. </li>
+</ul>
 
-
-Admin:
-Logga in / logga ut.
-Funktionalitet färdig. 
-Skapa arena.
-Skapa Event.
-Skapa biljetter.
-Kund:
-Köpa biljett.
-Logga in / logga ut.
-Funktionalitet färdig. 
-Skapa konto.
-Funktionalitet färdig. 
-Employee:
-Logga in / logga ut.
-Funktionalitet färdig. 
-Skapa konto
-Funktionalitet färdig. 
-
-
-
-Databas
-Vilken databas ska vi använda? phpMyAdmin eller workbench?
-Vi behöver veta hur man laddar ned DB som ett skript, och kör det i phpmyadmin, om vi kan göra det, kan vi utveckla lokalt och sedan ladda upp. 
-
-UML
-ARENA
-Arena
-id
-namn
-kapacitet
-väg
-vägnr
-postort
-ort
-stad
-1
-Friends
-200
-karalväg
-15
-18147
-lidingö
-stockholm
-2
-summerburst
-300
-annan
-4
-18139
-huddinge
-stockholm
-
-ArenaSection
-Id
-arenaId
-section
-ingång
-
-
-
-
-
-
-
-arenaSectionRowSeat
-Id
-arenaSectionRowId
-seat
-
-
-
-
-
-
-
-
-
-handikappPlatser
-Id
-arenasectionRowSeatId
-seat
-
-
-
-
-
-
-
-
-
-Event
-events
-id
-namn
-typ
-kapacitet
-
-Customers
-Id
-firstname
-lastname
-emial
-phone
-username
-password
-
-Orders
-Id
-customerId
-orderDate
-SUM
-
-
-
-
-
-
-
-
-seatStatus
-Id
-eventId
-arenaSectionRowId
-orderId
-sold
-scanned
-
-
-
-Extra
-History 
-
-Id
-event
-plats
-tickets
-soldTickets
-sumSoldTickets
-
-
-En kund kan ha flera biljetter, så å ‘mina sidor’, så visar vi en sida för biljetter, och sen en undersida för konotuppgifter som kan redigeras
-På seatstatus har vi information om: 
-Vilken kund som äger biljetten.
-Vilket event det är.
-Vad biljetten kosta.
-Huruvida biljetten är såld.
-Huruvida biljetten är skannad.
-Vilken adress.
-Vilken ingång, sektion, rad, plats. 
-UML
-
-
-TO-DO
-Kontrollera userstories. 
-Göra UML. 
-Vilka sidor vi kommer behöva.
-DoD.
-Tidsuppskattning.
-Prio.
-Trello
-Skiss.
-Product Breakdown
-Sprint planning. 
-
-Sidor
-Customer
-Startsida
-Events sida
-Event sida
-Konto sida
-Admin
-Login sida / startsida.
-Skapa nytt event
-Hantera events
-Skapa event.
-Ta bort event.
-
-
-Hantera biljetter
-Skapa biljetter
-Ta bort biljetter. 
-Ändra biljetter.
-Se biljetter.
-Se kunder(?)
-Ta bort kunder (?)
-Ändra kunder (?)
-Skapa kunder (?)
-Controller
-Log in sida
-Ta en biljett
-Se om biljetten är köpt.
-Se om biljetten har scannats. 
-DoD
-Sprint
-Producerad kod för funktionalitet.
-Miljö på sidan som tillåter användning av funktionalitet. 
-User stories träffade.
-Går igenom test.
-Produktägaren accepterar.
-Dokumentation klar.
-Upplagt på github Feature branch. 
-Projekt
-Kod följer önskad kvalité.
-Kod testat på i testmiljö. 
-Produktägaren accepterar.
-Kod testad på live server. 
-Merge till master.
-Alla branches förutom master borttagna.
-Upplagt på tillgänglig server.
-DB upplagd på tillgänglig server.
-Dokumentation klar. 
-
+<h2>UML</h2>
+<img src="readme_imgs.uml.png">
+<h3> DoD </h3>
+<ul>
+    <li>Kod testat och klarar testmiljö. </li>
+    <li>Kod testad och klarar live server</li>
+    <li>Merge till master</li>
+    <li>Upplagt på tillgänglig server</li>
+    <li>DB upplagd på tillgänglig server</li>
+    <li>Dokumentation klar </li>
+</ul>

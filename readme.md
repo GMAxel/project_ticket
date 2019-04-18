@@ -1,5 +1,5 @@
-<1>Tickets</h1>
-__________________________
+<h1>Tickets</h1>
+<hr>
 <h2>Verktyg</h2>
 <ul>
     <li> Github </li>
@@ -8,26 +8,9 @@ __________________________
     <li> Binero </li>
     <li> Trello </li>
 </ul>
-Github.
-Server
-Filezilla
-PhPmyAdmin
-Binero
-Trello
-Tidsplan
-2v 6 dagar / 20 dagar (varav 6 dagar = fre/lör/sön). 
-16e? 
-Vill vara klara i sådana fall 12e. 
 
-
-
-
-
-
-
-
-
-Mappstruktur
+<h2>Mappstruktur</h2>
+<img src="readme_imgs/mappstruktur.PNG">
 
 Github
 Master

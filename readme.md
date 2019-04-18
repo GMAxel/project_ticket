@@ -12,6 +12,22 @@
 <h2>Mappstruktur</h2>
 <img src="readme_imgs/mappstruktur.PNG">
 
+<h2> Github </h2>
+<ul>
+    <li>master
+        <ul> 
+            <li> hotfixes </li>
+            <li> develop 
+            <ul>
+                <li>feature</li>
+            </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+
 Github
 Master
 Test

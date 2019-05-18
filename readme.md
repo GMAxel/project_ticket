@@ -1,5 +1,21 @@
 <h1>Tickets</h1>
 <a href="http://tickets.loboessence.se/index.php"><b>Länk till sidan </b></a>
+<p> Skolprojekt som pågick i 3v med kraven:
+    <ul>
+        <li> En admin ska kunna skapa biljetter.</li>
+        <li> En kund ska kunna lägga till biljetterna i sin varukorg. </li>
+        <li> En Anställd ska kunna lägga in biljettens id och då kunna verifiera att biljetten är köpt och ej tidigare skannad. </li>
+    </ul>
+</p>
+<p>
+    Nu kan:
+    <ul> 
+        <li>Admin skapa arena, sektioner, rader och platser i arenan. </li>
+        <li>En kund kan lägga in biljetter i sin varukorg.</li>
+        <li>En kund kan 'köpa' biljetterna. Då blir biljetten ej tillgänglig för köp för andra, samtidigt som kunden kan hitta den på sin kontosida.  </li>
+        <li>En anställd kan skriva in kundens biljettID och få reda på huruvida biljetten är köpt, och om den redan har skannats. </li>
+    </ul>
+</p>
 <hr>
 <h2>Verktyg</h2>
 <ul>
